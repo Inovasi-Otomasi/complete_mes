@@ -151,6 +151,30 @@
 				<?php if (in_array_any(['admin'], $privileges)) : ?>
 					<div class="d-flex mb-3">
 						<div class="d-flex flex-column me-2 text-start">
+							<button type="button" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-start-all"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Stop All</button>
+							<div class="modal text-start fade" id="modal-form-start-all" tabindex="-1" role="dialog" aria-labelledby="modal-form-edit-1" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+									<div class="modal-content">
+										<div class="modal-body p-0">
+											<div class="card card-plain">
+												<div class="card-header pb-0 text-left">
+													<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to start all operation?</h3>
+												</div>
+												<div class="card-body">
+													<form role="form" method="post" action="">
+														<div class="text-center">
+															<button type="submit" class="btn bg-gradient-primary" value="Submit" name="start_all">Yes</button>
+															<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex flex-column me-2 text-start">
 							<button type="button" class="btn btn-danger mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-stop-all"><i class="fas fa-stop" aria-hidden="true"></i>&nbsp;&nbsp;Stop All</button>
 							<div class="modal text-start fade" id="modal-form-stop-all" tabindex="-1" role="dialog" aria-labelledby="modal-form-edit-1" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered modal-md" role="document">

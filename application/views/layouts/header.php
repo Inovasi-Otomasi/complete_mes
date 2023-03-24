@@ -99,24 +99,24 @@ function in_array_any($needles, $haystack)
 					</li>
 				<?php endif; ?>
 				<?php if (in_array_any(['admin', 'view_warehouse_management'], $privileges)) : ?>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link <?php if ($mainpage == 'warehouse_management') : ?>active<?php endif; ?>" href="<?php echo base_url(); ?>pages/warehouse_management">
 							<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 								<i class="fas fa-warehouse text-primary text-sm opacity-10"></i>
 							</div>
 							<span class="nav-link-text ms-1">Warehouse Management</span>
 						</a>
-					</li>
+					</li> -->
 				<?php endif; ?>
 				<?php if (in_array_any(['admin', 'view_pct'], $privileges)) : ?>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link <?php if ($mainpage == 'product_cycle_tracking') : ?>active<?php endif; ?>" href="<?php echo base_url(); ?>pages/product_cycle_tracking">
 							<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 								<i class="fas fa-truck text-primary text-sm opacity-10"></i>
 							</div>
 							<span class="nav-link-text ms-1">Product Cycle Tracking</span>
 						</a>
-					</li>
+					</li> -->
 				<?php endif; ?>
 				<?php if (in_array_any(['admin', 'view_breakdown_log'], $privileges)) : ?>
 					<li class="nav-item">
