@@ -151,7 +151,7 @@
 				<?php if (in_array_any(['admin'], $privileges)) : ?>
 					<div class="d-flex mb-3">
 						<div class="d-flex flex-column me-2 text-start">
-							<button type="button" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-start-all"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Stop All</button>
+							<button type="button" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-start-all"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Start All</button>
 							<div class="modal text-start fade" id="modal-form-start-all" tabindex="-1" role="dialog" aria-labelledby="modal-form-edit-1" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered modal-md" role="document">
 									<div class="modal-content">
