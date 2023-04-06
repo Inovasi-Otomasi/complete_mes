@@ -150,6 +150,19 @@
 		});
 	</script>
 <?php endif; ?>
+<?php if ($mainpage == 'oee_management') : ?>
+	<script>
+		$(document).ready(function() {
+			$('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+				localStorage.setItem('lastTab', $(this).attr('href'));
+			});
+			var lastTab = localStorage.getItem('lastTab');
+			if (lastTab) {
+				$('a[href="' + lastTab + '"]').tab('show');
+			}
+		});
+	</script>
+<?php endif; ?>
 <?php if ($mainpage == 'dashboard') : ?>
 	<script>
 		$(document).ready(function() {

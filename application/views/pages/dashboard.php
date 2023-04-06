@@ -151,7 +151,7 @@
 				<?php if (in_array_any(['admin'], $privileges)) : ?>
 					<div class="d-flex mb-3">
 						<div class="d-flex flex-column me-2 text-start">
-							<button type="button" class="btn btn-success mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-start-all"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Start All</button>
+							<button type="button" class="btn bg-gradient-success mb-0" data-bs-toggle="modal" data-bs-target="#modal-form-start-all"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Start All</button>
 							<div class="modal text-start fade" id="modal-form-start-all" tabindex="-1" role="dialog" aria-labelledby="modal-form-edit-1" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered modal-md" role="document">
 									<div class="modal-content">
@@ -161,9 +161,9 @@
 													<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to start all operation?</h3>
 												</div>
 												<div class="card-body">
-													<form role="form" method="post" action="">
+													<form role="form" method="post" action="<?php echo base_url(); ?>operation/start_all">
 														<div class="text-center">
-															<button type="submit" class="btn bg-gradient-primary" value="Submit" name="start_all">Yes</button>
+															<button type="submit" class="btn bg-gradient-primary" value="Submit">Yes</button>
 															<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
 														</div>
 													</form>
@@ -185,9 +185,9 @@
 													<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to stop all operation?</h3>
 												</div>
 												<div class="card-body">
-													<form role="form" method="post" action="">
+													<form role="form" method="post" action="<?php echo base_url(); ?>operation/stop_all">
 														<div class="text-center">
-															<button type="submit" class="btn bg-gradient-primary" value="Submit" name="stop_all">Yes</button>
+															<button type="submit" class="btn bg-gradient-primary" value="Submit">Yes</button>
 															<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
 														</div>
 													</form>
@@ -283,7 +283,7 @@
 																	<h3 class="font-weight-bolder text-info text-gradient">Setup</h3>
 																</div>
 																<div class="card-body">
-																	<form role="form" method="post" action="">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/setup_line">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
 																		<label>Setup Time</label>
 																		<div class="input-group mb-3">
@@ -309,7 +309,7 @@
 																			</select>
 																		</div>
 																		<div class="text-center">
-																			<button type="submit" class="btn bg-gradient-primary" value="Submit" name="line_setup">Submit</button>
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
 																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
 																		</div>
 																	</form>
@@ -329,14 +329,14 @@
 																	<h3 class="font-weight-bolder text-info text-gradient">NG</h3>
 																</div>
 																<div class="card-body">
-																	<form role="form" method="post" action="">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/ng_edit">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
 																		<label>Total NG</label>
 																		<div class="input-group mb-3">
 																			<input type="number" name="ng_count" class="form-control" min="0" value="<?php echo $line['NG_count']; ?>" id="ng_count_form_<?php echo $line['id']; ?>">
 																		</div>
 																		<div class="text-center">
-																			<button type="submit" class="btn bg-gradient-primary" value="Submit" name="ng_edit">Submit</button>
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
 																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
 																		</div>
 																	</form>
@@ -504,12 +504,12 @@
 																	<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to start this operation?</h3>
 																</div>
 																<div class="card-body">
-																	<form role="form" method="post" action="">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/start_operation">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
 																		<input type="hidden" name="order_id" value="<?php echo $line['order_id']; ?>">
 																		<input type="hidden" name="prev_status" value="<?php echo $line['status']; ?>">
 																		<div class="text-center">
-																			<button type="submit" class="btn bg-gradient-primary" value="Submit" name="start_operation">Yes</button>
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Yes</button>
 																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
 																		</div>
 																	</form>
@@ -529,7 +529,7 @@
 																	<h3 class="font-weight-bolder text-info text-gradient">Standby</h3>
 																</div>
 																<div class="card-body">
-																	<form role="form" method="post" action="">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/standby_operation">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
 																		<input type="hidden" name="order_id" value="<?php echo $line['order_id']; ?>">
 																		<input type="hidden" name="prev_status" value="<?php echo $line['status']; ?>">
@@ -544,8 +544,33 @@
 																			</select>
 																		</div>
 																		<div class="text-center">
-																			<button type="submit" class="btn bg-gradient-primary" value="Submit" name="standby_operation">Submit</button>
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
 																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<button type="button" class="btn bg-gradient-secondary me-1 w-100" data-bs-toggle="modal" data-bs-target="#modal-form-breakdown-<?php echo $line['id']; ?>"><i class="fas fa-angle-double-down" aria-hidden="true"></i>&nbsp;&nbsp;Breakdown</button>
+											<div class="modal text-start fade" id="modal-form-breakdown-<?php echo $line['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+													<div class="modal-content">
+														<div class="modal-body p-0">
+															<div class="card card-plain">
+																<div class="card-header pb-0 text-left">
+																	<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to breakdown this operation?</h3>
+																</div>
+																<div class="card-body">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/breakdown_operation">
+																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
+																		<input type="hidden" name="order_id" value="<?php echo $line['order_id']; ?>">
+																		<input type="hidden" name="prev_status" value="<?php echo $line['status']; ?>">
+																		<div class="text-center">
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Yes</button>
+																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
 																		</div>
 																	</form>
 																</div>
@@ -565,11 +590,11 @@
 																	<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to stop this operation?</h3>
 																</div>
 																<div class="card-body">
-																	<form role="form" method="post" action="">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/stop_operation">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
 																		<input type="hidden" name="order_id" value="<?php echo $line['order_id']; ?>">
 																		<div class="text-center">
-																			<button type="submit" class="btn bg-gradient-primary" value="Submit" name="stop_operation">Yes</button>
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Yes</button>
 																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
 																		</div>
 																	</form>
