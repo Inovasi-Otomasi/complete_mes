@@ -15,6 +15,7 @@ class Export_model extends CI_Model
 	}
 	public function Export($json_arr)
 	{
+		// var_dump($json_arr['sku_code']);
 		$spreadsheet = new Spreadsheet();
 		$spreadsheet->getSecurity()->setLockWindows(true);
 		$spreadsheet->getSecurity()->setLockStructure(true);
@@ -58,13 +59,18 @@ class Export_model extends CI_Model
 		// echo $datetimeexplode[0];
 		$datetimestart = $datetimeexplode[0];
 		$datetimeend = $datetimeexplode[1];
+
 		$this->db->select('*');
-		$this->db->where('timestamp >=', $datetimestart);
-		$this->db->where('timestamp <=', $datetimeend);
+
 		// $this->db->select('*');
 		if ($json_arr['line_name'] != 'All') {
 			$this->db->where('line_name', $json_arr['line_name']);
 		}
+		if ($json_arr['sku_code'] != 'All') {
+			$this->db->where('sku_code', $json_arr['sku_code']);
+		}
+		$this->db->where('timestamp >=', $datetimestart);
+		$this->db->where('timestamp <=', $datetimeend);
 		$this->db->from('log_oee');
 		$query = $this->db->get();
 		$sheet->setCellValue('A' . 3, 'Timestamp');
@@ -131,34 +137,9 @@ class Export_model extends CI_Model
 		$writer = new Xlsx($spreadsheet);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
 
-		// header('Content-Type: application/vnd.ms-excel');
+		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
-		// header('Cache-Control: max-age=0');
-
-		header("Pragma: public");
-		header("Expires: 0");
-		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-		header("Content-Type: application/force-download");
-		header("Content-Type: application/octet-stream");
-		header("Content-Type: application/download");;
-		// header("Content-Disposition: attachment;filename=$filename");
-		ob_start();
+		header('Cache-Control: max-age=0');
 		$writer->save('php://output'); // download file
-		$excelData = ob_get_contents();
-		ob_end_clean();
-		// $encrypted = new Encrypt($nofile = true);
-		// $encryptedout = $encrypted->input($excelData)
-		//     ->password('adminiot')
-		//     ->output();
-
-		// return "data:application/vnd.ms-excel;base64," . base64_encode($pdfData);
-		$response =  array(
-			'op' => 'ok',
-			'date_time_range' => $json_arr['datetimerange'],
-			'file_name' => $filename . '.xlsx',
-			'file' => "data:application/vnd.ms-excel;base64," . base64_encode($excelData)
-		);
-
-		die(json_encode($response));
 	}
 }

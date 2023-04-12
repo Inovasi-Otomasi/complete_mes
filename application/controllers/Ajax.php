@@ -1223,7 +1223,29 @@ class Ajax extends CI_Controller
 	}
 	public function export()
 	{
-		$json = file_get_contents('php://input');
-		$this->export_model->Export(json_decode($json, true));
+		// $json = file_get_contents('php://input');
+		// var_dump($json);
+		// datetimerange: "2023-04-04 10:00:00 to 2023-04-13 18:00:00"
+		// line_name: "All"
+		$data = array(
+			"datetimerange" => $this->input->post("datetimerange"),
+			"line_name" => $this->input->post("line"),
+			"sku_code" => $this->input->post("sku"),
+		);
+		// var_dump($data);
+		$this->export_model->Export($data);
 	}
+	// public function export_api()
+	// {
+	//     // $fromepoch = date("Y-m-d H:i:s", ($_GET['from'] / 1000) + 5 * 60 * 60);
+	//     // $toepoch = date("Y-m-d H:i:s", ($_GET['to'] / 1000) + 5 * 60 * 60);
+	//     $fromepoch = date("Y-m-d H:i:s", ($_GET['from'] / 1000) + 7 * 60 * 60);
+	//     $toepoch = date("Y-m-d H:i:s", ($_GET['to'] / 1000) + 7 * 60 * 60);
+	//     $datetimerange = $fromepoch . ' to ' . $toepoch;
+	//     // var_dump($datetimerange);
+	//     $export_data = array(
+	//         'datetimerange' => $datetimerange
+	//     );
+	//     $this->export_model->Export($export_data);
+	// }
 }

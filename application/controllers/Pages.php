@@ -41,6 +41,7 @@ class Pages extends CI_Controller
 		$this->load->model('FG_model');
 		$this->load->model('fetch_model');
 		$this->load->model('event_model');
+		$this->load->model('log_model');
 	}
 	function login()
 	{
@@ -231,7 +232,7 @@ class Pages extends CI_Controller
 			if ($this->in_array_any(['admin', 'view_breakdown_log'], $this->session->userdata('privileges'))) {
 				$data['pic_list'] = $this->pic_model->get_pic_info();
 				$data['remark_list'] = $this->remark_model->get_remark_info();
-				$data['mainpage'] = 'breakdown_log';
+				$data['mainpage'] = 'down_time_log';
 				$data['privileges'] = $this->session->userdata('privileges');
 				$this->load->view('layouts/header', $data);
 				$this->load->view('pages/breakdown_log', $data);
@@ -249,8 +250,16 @@ class Pages extends CI_Controller
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_reporting'], $this->session->userdata('privileges'))) {
 				$data['lines'] = $this->line_model->get_line_info();
+				$data['sku_code'] = $this->sku_model->get_sku_info();
 				$data['mainpage'] = 'reporting';
 				$data['privileges'] = $this->session->userdata('privileges');
+				$request = array(
+					"datetimerange" => $this->input->get("datetimerange") ?: NULL,
+					"line_name" => $this->input->get("line") ?: NULL,
+					"sku_code" => $this->input->get("sku") ?: NULL,
+				);
+				$data['summary'] = $this->log_model->get_summary($request);
+				// var_dump($data['summary']['avg(performance)']);
 				$this->load->view('layouts/header', $data);
 				$this->load->view('pages/reporting', $data);
 				$this->load->view('layouts/footer');

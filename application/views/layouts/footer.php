@@ -27,6 +27,8 @@
 <script src="<?php echo base_url(); ?>assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/plugins/chartjs.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/all.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/js/select2.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/daterangepicker.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/argon-dashboard.min.js?v=2.0.1"></script>
@@ -108,7 +110,13 @@
 	</script>
 <?php endif; ?>
 
-
+<script>
+	$(document).ready(function() {
+		$('.selectize').selectize({
+			sortField: 'text'
+		});
+	});
+</script>
 <?php if ($mainpage == 'reporting') : ?>
 	<script>
 		$(function() {

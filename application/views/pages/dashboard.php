@@ -286,27 +286,31 @@
 																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/setup_line">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
 																		<label>Setup Time</label>
-																		<div class="input-group mb-3">
-																			<select class="form-select" id="setup_detail" name="setup_detail">
-																				<option value="" <?php if ($line['remark'] == '') echo "selected"; ?>>None (0 Second)</option>
-																				<?php foreach ($remark_list as $remark) : ?>
-																					<?php if ($remark['status'] == 'SETUP') : ?>
-																						<option value="<?php echo $remark['detail']; ?>" <?php if ($line['remark'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Seconds)'; ?></option>
-																					<?php endif; ?>
-																				<?php endforeach; ?>
-																			</select>
-																		</div>
-																		<label>Order ID</label>
-																		<div class="input-group mb-3">
-																			<select class="form-select" id="order_id" name="order_id" required>
-																				<?php foreach ($order_list as $order) : ?>
-																					<?php foreach (json_decode($order['line_rules'], true) as $rule) : ?>
-																						<?php if ($rule['start_job'] == 0 && $rule['line_name'] == $line['line_name']) : ?>
-																							<option value="<?php echo $order['id']; ?>" <?php if ($line['order_id'] == $order['id']) echo "selected"; ?>><?php echo "ID: " . $order['id'] . " | " . $order['sku_code'] . " | " . $order['quantity'] . " pcs"; ?></option>
+																		<div class="input-group mb-3 row">
+																			<div class="col">
+																				<select class="selectize" id="setup_detail" name="setup_detail">
+																					<option value="0" <?php if ($line['remark'] == '') echo "selected"; ?>>None (0 Second)</option>
+																					<?php foreach ($remark_list as $remark) : ?>
+																						<?php if ($remark['status'] == 'SETUP') : ?>
+																							<option value="<?php echo $remark['detail']; ?>" <?php if ($line['remark'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Seconds)'; ?></option>
 																						<?php endif; ?>
 																					<?php endforeach; ?>
-																				<?php endforeach; ?>
-																			</select>
+																				</select>
+																			</div>
+																		</div>
+																		<label>Order ID</label>
+																		<div class="input-group mb-3 row">
+																			<div class="col">
+																				<select class="selectize" id="order_id" name="order_id" required>
+																					<?php foreach ($order_list as $order) : ?>
+																						<?php foreach (json_decode($order['line_rules'], true) as $rule) : ?>
+																							<?php if ($rule['start_job'] == 0 && $rule['line_name'] == $line['line_name']) : ?>
+																								<option value="<?php echo $order['id']; ?>" <?php if ($line['order_id'] == $order['id']) echo "selected"; ?>><?php echo "ID: " . $order['id'] . " | " . $order['sku_code'] . " | " . $order['quantity'] . " pcs"; ?></option>
+																							<?php endif; ?>
+																						<?php endforeach; ?>
+																					<?php endforeach; ?>
+																				</select>
+																			</div>
 																		</div>
 																		<div class="text-center">
 																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>

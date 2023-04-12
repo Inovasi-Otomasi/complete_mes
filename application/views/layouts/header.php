@@ -32,14 +32,17 @@ function in_array_any($needles, $haystack)
 	<!--     Fonts and icons     -->
 	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
 	<!-- Nucleo Icons -->
+
 	<link href="<?php echo base_url(); ?>assets/css/nucleo-icons.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/css/nucleo-svg.css" rel="stylesheet" />
 	<script src="<?php echo base_url(); ?>assets/js/kitfontawesome.js" crossorigin="anonymous"></script>
 	<!-- Font Awesome Icons -->
 	<script src="<?php echo base_url(); ?>assets/js/all.js" crossorigin="anonymous"></script>
+
 	<!-- <link href="<?php echo base_url(); ?>assets/css/nucleo-svg.css" rel="stylesheet" /> -->
 	<link href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css" rel="stylesheet" />
-
+	<!-- <link src="<?php echo base_url(); ?>assets/css/select2.min.css" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 	<!-- CSS Files -->
 	<link id="pagestyle" href="<?php echo base_url(); ?>assets/css/argon-dashboard.css?v=2.0.1" rel="stylesheet" defer />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/daterangepicker.css" />
@@ -120,11 +123,11 @@ function in_array_any($needles, $haystack)
 				<?php endif; ?>
 				<?php if (in_array_any(['admin', 'view_breakdown_log'], $privileges)) : ?>
 					<li class="nav-item">
-						<a class="nav-link <?php if ($mainpage == 'breakdown_log') : ?>active<?php endif; ?>" href="<?php echo base_url(); ?>pages/breakdown_log">
+						<a class="nav-link <?php if ($mainpage == 'down_time_log') : ?>active<?php endif; ?>" href="<?php echo base_url(); ?>pages/breakdown_log">
 							<div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 								<i class="fas fa-exclamation text-primary text-sm opacity-10"></i>
 							</div>
-							<span class="nav-link-text ms-1">Breakdown Log</span>
+							<span class="nav-link-text ms-1">Down Time Log</span>
 						</a>
 					</li>
 				<?php endif; ?>
