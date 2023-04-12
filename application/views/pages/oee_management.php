@@ -208,14 +208,14 @@
 															<select class="form-select" id="status" name="status">
 																<option value="SETUP">SETUP</option>
 																<option value="STANDBY">STANDBY</option>
-																<option value="BREAKDOWN">BREAKDOWN</option>
+																<option value="DOWN TIME">DOWN TIME</option>
 															</select>
 														</div>
 														<label>Remark</label>
 														<div class="input-group mb-3">
 															<input class="form-control" type="text" placeholder="Remark" name='remark' required>
 														</div>
-														<label>Remark Time (Second) Note: ignore for BREAKDOWN</label>
+														<label>Remark Time (Second) Note: ignore for DOWN TIME</label>
 														<div class="input-group mb-3">
 															<input class="form-control" type="number" placeholder="Remark Time" name='remark_time' value="0" required>
 														</div>

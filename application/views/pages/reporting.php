@@ -13,7 +13,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_availability" data-percent="<?php echo $summary['avg(performance)']; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_availability" data-percent="<?php echo $summary['avg(performance)'] ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 					<div class="row col">
@@ -23,7 +23,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_performance" data-percent="<?php echo $summary['avg(availability)']; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_performance" data-percent="<?php echo $summary['avg(availability)'] ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 					<div class="row col">
@@ -33,7 +33,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_quality" data-percent="<?php echo $summary['avg(quality)']; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_quality" data-percent="<?php echo $summary['avg(quality)'] ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 							<label for="datetimerange" class="col-form-label">Choose Range</label>
 						</div>
 						<div class="col-xs-auto col-lg-5">
-							<input type="text" name="datetimerange" id="datetimerange" class="form-control">
+							<input type="text" name="datetimerange" id="datetimerange" value="<?php echo $request['datetimerange']; ?>" class="form-control">
 						</div>
 					</div>
 					<div class="mb-3 row g-3 align-items-center">
@@ -53,9 +53,9 @@
 						<div class="col-xs-auto col-lg-2">
 							<select class="selectize" aria-label="Default select example" name="line" id="line_name" placeholder="Pick a line..." required>
 								<option value="">Select a line...</option>
-								<option value='All'>All</option>
+								<option value='All' <?php if ($request['line_name'] == 'All') : ?>selected<?php endif; ?>>All</option>
 								<?php foreach ($lines as $line) : ?>
-									<option value="<?php echo $line['line_name'] ?>"><?php echo $line['line_name'] ?></option>
+									<option value="<?php echo $line['line_name'] ?>" <?php if ($request['line_name'] == $line['line_name']) : ?>selected<?php endif; ?>><?php echo $line['line_name'] ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
@@ -67,14 +67,14 @@
 						<div class="col-xs-auto col-lg-2">
 							<select class="selectize" aria-label="Default select example" name="sku" id="sku_code" placeholder="Pick SKU..." required>
 								<option value="">Select SKU...</option>
-								<option value='All'>All</option>
+								<option value='All' <?php if ($request['sku_code'] == 'All') : ?>selected<?php endif; ?>>All</option>
 								<?php foreach ($sku_code as $sku) : ?>
-									<option value="<?php echo $sku['sku_code'] ?>"><?php echo $sku['sku_code'] ?></option>
+									<option value="<?php echo $sku['sku_code'] ?>" <?php if ($request['sku_code'] == $sku['sku_code']) : ?>selected<?php endif; ?>><?php echo $sku['sku_code'] ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
 					</div>
-					<button type="submit" value="Submit" name="apply" formmethod="get" formaction="<?php echo base_url(); ?>pages/reporting" class="btn btn-primary">Apply</button>
+					<button type="submit" value="Submit" name="apply" formmethod="post" formaction="<?php echo base_url(); ?>pages/reporting" class="btn btn-primary">Apply</button>
 					<button type="submit" value="Submit" name="export" formmethod="post" formaction="<?php echo base_url(); ?>ajax/export" formtarget="_blank" class="btn btn-success">Export</button>
 				</form>
 			</div>

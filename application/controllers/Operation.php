@@ -220,10 +220,10 @@ class Operation extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
-				if ($this->input->post('prev_status') != 'STOP') {
+				if ($this->input->post('prev_status') != 'STOP' && $this->input->post('prev_status') != 'DOWN TIME') {
 					$arr_query = array(
 						'id' => $this->input->post('line_id'),
-						'status' => 'BREAKDOWN',
+						'status' => 'DOWN TIME',
 						'order_id' => $this->input->post('order_id'),
 						'cycle_time' => $this->line_model->get_line_by_id($this->input->post('line_id'))->cycle_time, //time from db,
 					);

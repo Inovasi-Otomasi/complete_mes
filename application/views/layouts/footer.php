@@ -122,8 +122,8 @@
 		$(function() {
 			$('input[name="datetimerange"]').daterangepicker({
 				timePicker: true,
-				startDate: moment().startOf('hour'),
-				endDate: moment().startOf('hour').add(32, 'hour'),
+				// startDate: moment().startOf('hour'),
+				// endDate: moment().startOf('hour').add(32, 'hour'),
 
 				locale: {
 					separator: " to ",
@@ -131,31 +131,31 @@
 				}
 			});
 		});
-		$(document).ready(function() {
-			$("#export_form").submit(function(e) {
-				e.preventDefault();
-				var datetimerange = $("#datetimerange").val();;
-				var line_name = $("#line_name").val();
-				$.ajax({
-					type: "POST",
-					url: '<?php echo base_url(); ?>/ajax/export',
-					data: JSON.stringify({
-						datetimerange: datetimerange,
-						line_name: line_name
-					}),
-					contentType: "application/json; charset=utf-8",
-					async: true,
-					dataType: 'json',
-				}).done(function(data) {
-					var $a = $("<a>");
-					$a.attr("href", data.file);
-					$("body").append($a);
-					$a.attr("download", data.file_name);
-					$a[0].click();
-					$a.remove();
-				});
-			});
-		});
+		// $(document).ready(function() {
+		// 	$("#export_form").submit(function(e) {
+		// 		e.preventDefault();
+		// 		var datetimerange = $("#datetimerange").val();;
+		// 		var line_name = $("#line_name").val();
+		// 		$.ajax({
+		// 			type: "POST",
+		// 			url: '<?php echo base_url(); ?>/ajax/export',
+		// 			data: JSON.stringify({
+		// 				datetimerange: datetimerange,
+		// 				line_name: line_name
+		// 			}),
+		// 			contentType: "application/json; charset=utf-8",
+		// 			async: true,
+		// 			dataType: 'json',
+		// 		}).done(function(data) {
+		// 			var $a = $("<a>");
+		// 			$a.attr("href", data.file);
+		// 			$("body").append($a);
+		// 			$a.attr("download", data.file_name);
+		// 			$a[0].click();
+		// 			$a.remove();
+		// 		});
+		// 	});
+		// });
 	</script>
 <?php endif; ?>
 <?php if ($mainpage == 'oee_management') : ?>

@@ -12,22 +12,27 @@
 							<form role="form" method="post" action="<?php echo base_url(); ?>ajax/edit_log">
 								<input type="hidden" name="id" value="<?php echo $id; ?>" />
 								<label>PIC</label>
-								<div class="input-group mb-3">
-									<select class="form-select selectize" id="pic_name" name="pic_name">
+								<div class="input-group mb-3 row">
+									<select id="pic_name-<?php echo $id; ?>" name="pic_name">
 										<?php foreach ($pic_list as $pic) : ?>
 											<option value="<?php echo $pic['pic_name']; ?>" <?php if ($pic_name == $pic['pic_name']) echo "selected"; ?>><?php echo $pic['pic_name']; ?></option>
 										<?php endforeach; ?>
 									</select>
-								</div> <label>Remark</label>
-								<div class="input-group mb-3">
-									<select class="form-select" id="remark" name="remark">
+								</div>
+								<label>Remark</label>
+								<div class="input-group mb-3 row">
+									<select id="remark-<?php echo $id; ?>" name="remark">
 										<?php foreach ($remark_list as $list) : ?>
-											<?php if ($list['status'] == 'BREAKDOWN') : ?>
+											<?php if ($list['status'] == 'DOWN TIME') : ?>
 												<option value="<?php echo $list['detail']; ?>" <?php if ($remark == $list['detail']) echo "selected"; ?>><?php echo $list['detail']; ?></option>
 											<?php endif; ?>
 										<?php endforeach; ?>
 									</select>
 								</div>
+								<script>
+									$('#pic_name-<?php echo $id; ?>').selectize({});
+									$('#remark-<?php echo $id; ?>').selectize({});
+								</script>
 								<label>Detail</label>
 								<div class="input-group mb-3">
 									<input type="text" class="form-control" placeholder="Detail" name="detail" value="<?php echo $detail; ?>" required>
