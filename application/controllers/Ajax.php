@@ -239,7 +239,7 @@ class Ajax extends CI_Controller
 					"line_rules" => json_encode($line_rules),
 					"material" => json_encode($requirements)
 				);
-				var_dump($data);
+				// var_dump($data);
 				$result = $this->sku_model->add_sku($data);
 				if ($result > 0) {
 					$this->event_model->add_event(array("event" => "New SKU has been created. [" . $data['sku_code'] . "]"));
@@ -382,7 +382,7 @@ class Ajax extends CI_Controller
 				);
 				$result = $this->log_model->edit_log($data);
 				if ($result > 0) {
-					$this->event_model->add_event(array("event" => "Breakdown log ID " . $data['id'] . " has been changed."));
+					$this->event_model->add_event(array("event" => "Down Time log ID " . $data['id'] . " has been changed."));
 					$this->session->set_flashdata("success", "Your changes have been saved.");
 					redirect(base_url() . 'pages/breakdown_log');
 				} else {
