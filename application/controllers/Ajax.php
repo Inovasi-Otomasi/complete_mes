@@ -242,7 +242,7 @@ class Ajax extends CI_Controller
 				var_dump($data);
 				$result = $this->sku_model->add_sku($data);
 				if ($result > 0) {
-					$this->event_model->add_event(array("event" => "New SKU has been created. [" . $data['line_name'] . ": " . $data['sku_code'] . "]"));
+					$this->event_model->add_event(array("event" => "New SKU has been created. [" . $data['sku_code'] . "]"));
 					$this->session->set_flashdata("success", "Your changes have been saved.");
 					redirect(base_url() . 'pages/oee_management');
 				} else {
