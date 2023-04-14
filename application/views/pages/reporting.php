@@ -9,6 +9,16 @@
 					<div class="row col">
 						<div class="col-12 mb-0">
 							<div class="numbers">
+								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">OEE</p>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="GaugeMeter start-50 top-50 translate-middle" id="report_oee" data-percent="<?php echo ($summary['avg(performance)'] + $summary['avg(availability)'] + $summary['avg(quality)']) / 3; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+						</div>
+					</div>
+					<div class="row col">
+						<div class="col-12 mb-0">
+							<div class="numbers">
 								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Availability</p>
 							</div>
 						</div>
