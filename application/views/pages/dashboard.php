@@ -441,45 +441,59 @@
 										</div>
 										<div class="col-lg-5">
 											<div class="row">
-												<p class="col-5 text-xl">SKU</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='sku_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Status</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='status_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Order ID</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='order_id_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">SKU</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='sku_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Target Item</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='target_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Order ID</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='order_id_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Setup Allowance Time</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='setup_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Target Item</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='target_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Cycle Time</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='cycle_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Setup Allowance Time</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='setup_time_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Run Time</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='run_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Cycle Time</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='cycle_time_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Down Time</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='down_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Run Time</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='run_time_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl">Item Counter</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='item_counter_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0">Down Time</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='down_time_<?php echo $line['id']; ?>'></span></p>
 											</div>
+											<hr class="my-1 py-0">
+											<div class="row">
+												<p class="col-5 text-xl my-0 py-0">Item Counter</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='item_counter_<?php echo $line['id']; ?>'></span></p>
+											</div>
+
 											<!-- <div class="row">
 												<p class="col-5 text-xl">NG Product</p>
 												<p class="col-2 text-xl">:</p>
@@ -491,11 +505,7 @@
 													<button onclick="double_plus_ng(<?php echo $line['id']; ?>)" style="padding: 0; border: none; background: none;">&gt;&gt;</button>
 												</p>
 											</div> -->
-											<div class="row">
-												<p class="col-5 text-xxl">Status</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl"><span class="text-dark font-weight-bold ms-sm-2" id='status_<?php echo $line['id']; ?>'></span></p>
-											</div>
+
 										</div>
 										<div class="col-lg-3 mb-3 mt-3">
 											<button type="button" class="btn bg-gradient-success me-1 w-100" data-bs-toggle="modal" data-bs-target="#modal-form-start-<?php echo $line['id']; ?>"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Start</button>
