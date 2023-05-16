@@ -12,6 +12,8 @@
 						<tr>
 							<th>ID</th>
 							<th>Timestamp</th>
+							<th>Order ID</th>
+							<th>Batch ID</th>
 							<th>Line Name</th>
 							<th>SKU Code</th>
 							<th>Item Counter</th>
@@ -33,6 +35,8 @@
 						<tr>
 							<th>ID</th>
 							<th>Timestamp</th>
+							<th>Order ID</th>
+							<th>Batch ID</th>
 							<th>Line Name</th>
 							<th>SKU Code</th>
 							<th>Item Counter</th>

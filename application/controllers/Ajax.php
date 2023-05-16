@@ -69,6 +69,7 @@ class Ajax extends CI_Controller
 				$line_names .= '</ul>';
 				$row = array();
 				$row[] = $list->id;
+				$row[] = $list->batch_id;
 				$row[] = $line_names;
 				$row[] = $list->sku_code;
 				$row[] = $list->quantity;
@@ -107,6 +108,7 @@ class Ajax extends CI_Controller
 			if ($this->in_array_any(['admin', 'add_order'], $this->session->userdata('privileges'))) {
 				$single_sku = $this->sku_model->get_sku_by_name($this->input->post("sku_code"));
 				$data = array(
+					"batch_id" => $this->input->post("batch_id"),
 					"sku_code" => $this->input->post("sku_code"),
 					"line_rules" => $single_sku->line_rules,
 					"quantity" => $this->input->post("quantity"),
@@ -134,10 +136,13 @@ class Ajax extends CI_Controller
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'delete_order'], $this->session->userdata('privileges'))) {
 				$id = $_GET['id'];
-				$singel_order = $this->order_model->get_order_by_id($id);
-				$result = $this->order_model->delete_order($id);
+				$single_order = $this->order_model->get_order_by_id($id);
+				$result = 0;
+				if ($single_order->status != 'Work In Progress') {
+					$result = $this->order_model->delete_order($id);
+				}
 				if ($result > 0) {
-					$this->event_model->add_event(array("event" => "Order ID " . $id . " has been deleted. [" . $singel_order->sku_code . ": " . $singel_order->quantity . " pcs]"));
+					$this->event_model->add_event(array("event" => "Order ID " . $id . " has been deleted. [" . $single_order->sku_code . ": " . $single_order->quantity . " pcs]"));
 					$this->session->set_flashdata("success", "Order ID " . $id . " Succesfully Deleted");
 					redirect(base_url() . 'pages/order');
 				} else {
@@ -343,6 +348,8 @@ class Ajax extends CI_Controller
 				$row = array();
 				$row[] = $list->id;
 				$row[] = $list->timestamp;
+				$row[] = $list->order_id;
+				$row[] = $list->batch_id;
 				$row[] = $list->line_name;
 				$row[] = $list->sku_code;
 				$row[] = $list->item_counter;

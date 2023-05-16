@@ -21,6 +21,7 @@ class Line_model extends CI_Model
 	{
 		$this->db->set('sku_code', $data['sku_code']);
 		$this->db->set('order_id', $data['order_id']);
+		$this->db->set('batch_id', $data['batch_id']);
 		$this->db->set('target', $data['target']);
 		$this->db->set('setup_time', $data['setup_time']);
 		$this->db->set('cycle_time', $data['cycle_time']);
@@ -37,6 +38,7 @@ class Line_model extends CI_Model
 			$this->db->set('remark', $data['remark']);
 		} elseif ($data['status'] == 'STOP') {
 			$this->db->set('sku_code', 'None');
+			$this->db->set('batch_id', 0);
 			$this->db->set('order_id', 0);
 			$this->db->set('setup_time', 0);
 			$this->db->set('cycle_time', 0);

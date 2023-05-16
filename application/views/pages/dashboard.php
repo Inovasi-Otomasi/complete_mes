@@ -305,7 +305,7 @@
 																					<?php foreach ($order_list as $order) : ?>
 																						<?php foreach (json_decode($order['line_rules'], true) as $rule) : ?>
 																							<?php if ($rule['start_job'] == 0 && $rule['line_name'] == $line['line_name']) : ?>
-																								<option value="<?php echo $order['id']; ?>" <?php if ($line['order_id'] == $order['id']) echo "selected"; ?>><?php echo "ID: " . $order['id'] . " | " . $order['sku_code'] . " | " . $order['quantity'] . " pcs"; ?></option>
+																								<option value="<?php echo $order['id']; ?>" <?php if ($line['order_id'] == $order['id']) echo "selected"; ?>><?php echo "ID: " . $order['id'] . " | Batch ID: " . $order['batch_id'] . " | SKU: " . $order['sku_code'] . " | " . $order['quantity'] . " pcs"; ?></option>
 																							<?php endif; ?>
 																						<?php endforeach; ?>
 																					<?php endforeach; ?>
@@ -456,6 +456,12 @@
 												<p class="col-5 text-xl my-0 py-0">Order ID</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
 												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='order_id_<?php echo $line['id']; ?>'></span></p>
+											</div>
+											<hr class="my-1 py-0">
+											<div class="row">
+												<p class="col-5 text-xl my-0 py-0">Batch ID</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='batch_id_<?php echo $line['id']; ?>'></span></p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">

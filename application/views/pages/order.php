@@ -15,6 +15,10 @@
 										</div>
 										<div class="card-body">
 											<form role="form" method="post" action="<?php echo base_url(); ?>ajax/add_order">
+												<label>Batch ID</label>
+												<div class="input-group mb-3">
+													<input class="form-control" type="text" placeholder="Batch ID" name='batch_id' required>
+												</div>
 												<label>SKU Code</label>
 												<div class="input-group mb-3 row">
 													<div class="col-12">
@@ -57,6 +61,7 @@
 					<thead>
 						<tr>
 							<th>ID</th>
+							<th>Batch ID</th>
 							<th>Line Name</th>
 							<th>SKU Name</th>
 							<th>Target Quantity</th>
@@ -78,6 +83,7 @@
 					<tfoot>
 						<tr>
 							<th>ID</th>
+							<th>Batch ID</th>
 							<th>Line Name</th>
 							<th>SKU Name</th>
 							<th>Target Quantity</th>

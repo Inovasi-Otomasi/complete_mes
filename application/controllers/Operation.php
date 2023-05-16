@@ -44,6 +44,7 @@ class Operation extends CI_Controller
 						'id' => $this->input->post('line_id'),
 						'sku_code' => $single_order->sku_code,
 						'order_id' => $single_order->id,
+						'batch_id' => $single_order->batch_id,
 						'setup_time' => $single_remark->remark_time,
 						'cycle_time' => $ct ?: 0,
 						'target' => $quantity,

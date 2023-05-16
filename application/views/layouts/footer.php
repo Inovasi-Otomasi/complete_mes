@@ -254,6 +254,7 @@
 							$("#NG_" + data[i].id).html(data[i].NG_count);
 							// $("#ng_count_form_" + data[i].id).val(data[i].NG_count);
 							$("#status_" + data[i].id).html(data[i].status);
+							$("#batch_id_" + data[i].id).html(data[i].batch_id);
 							$("#order_id_" + data[i].id).html(data[i].order_id);
 							$("#target_" + data[i].id).html(data[i].target);
 						}
