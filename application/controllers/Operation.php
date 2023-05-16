@@ -44,10 +44,10 @@ class Operation extends CI_Controller
 						'id' => $this->input->post('line_id'),
 						'sku_code' => $single_order->sku_code,
 						'order_id' => $single_order->id,
-						'setup_time' => $single_remark->remark_time,
+						'setup_time' => $single_remark ? $single_remark->remark_time : 0,
 						'cycle_time' => $ct ?: 0,
 						'target' => $quantity,
-						'remark' => $single_remark->detail
+						'remark' => $single_remark ? $single_remark->detail : 0
 					);
 					$result = $this->line_model->edit_line($arr_query);
 					if ($result > 0) {
