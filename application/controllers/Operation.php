@@ -47,7 +47,7 @@ class Operation extends CI_Controller
 						'setup_time' => $single_remark ? $single_remark->remark_time : 0,
 						'cycle_time' => $ct ?: 0,
 						'target' => $quantity,
-						'remark' => $single_remark ? $single_remark->detail : 0
+						'remark' => $single_remark ? $single_remark->detail : 'None'
 					);
 					$result = $this->line_model->edit_line($arr_query);
 					if ($result > 0) {
