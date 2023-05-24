@@ -252,6 +252,7 @@
 							$("#down_time_" + data[i].id).html(data[i].down_time);
 							$("#item_counter_" + data[i].id).html(data[i].item_counter);
 							$("#NG_" + data[i].id).html(data[i].NG_count);
+							$("#additional_" + data[i].id).html(data[i].additional);
 							// $("#ng_count_form_" + data[i].id).val(data[i].NG_count);
 							$("#status_" + data[i].id).html(data[i].status);
 							$("#order_id_" + data[i].id).html(data[i].order_id);

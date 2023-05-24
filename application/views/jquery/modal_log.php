@@ -29,13 +29,38 @@
 										<?php endforeach; ?>
 									</select>
 								</div>
-								<script>
-									$('#pic_name-<?php echo $id; ?>').selectize({});
-									$('#remark-<?php echo $id; ?>').selectize({});
-								</script>
+
 								<label>Detail</label>
 								<div class="input-group mb-3">
 									<input type="text" class="form-control" placeholder="Detail" name="detail" value="<?php echo $detail; ?>" required>
+								</div>
+								<label>PIC 2</label>
+								<div class="input-group mb-3 row">
+									<select id="pic_name_2-<?php echo $id; ?>" name="pic_name_2">
+										<?php foreach ($pic_list as $pic) : ?>
+											<option value="<?php echo $pic['pic_name']; ?>" <?php if ($pic_name == $pic['pic_name']) echo "selected"; ?>><?php echo $pic['pic_name']; ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+								<label>Remark 2</label>
+								<div class="input-group mb-3 row">
+									<select id="remark_2-<?php echo $id; ?>" name="remark_2">
+										<?php foreach ($remark_list as $list) : ?>
+											<?php if ($list['status'] == 'DOWN TIME') : ?>
+												<option value="<?php echo $list['detail']; ?>" <?php if ($remark == $list['detail']) echo "selected"; ?>><?php echo $list['detail']; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+									</select>
+								</div>
+								<script>
+									$('#pic_name-<?php echo $id; ?>').selectize({});
+									$('#remark-<?php echo $id; ?>').selectize({});
+									$('#pic_name_2-<?php echo $id; ?>').selectize({});
+									$('#remark_2-<?php echo $id; ?>').selectize({});
+								</script>
+								<label>Detail 2</label>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" placeholder="Detail 2" name="detail_2" value="<?php echo $detail_2; ?>" required>
 								</div>
 								<div class="text-center">
 									<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>

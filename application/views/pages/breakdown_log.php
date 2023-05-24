@@ -20,6 +20,9 @@
 							<th>PIC</th>
 							<th>Remark</th>
 							<th>Detail</th>
+							<th>PIC 2</th>
+							<th>Remark 2</th>
+							<th>Detail 2</th>
 							<th>Location</th>
 							<!-- <th>Performance</th>
                             <th>Availability</th>
@@ -41,6 +44,9 @@
 							<th>PIC</th>
 							<th>Remark</th>
 							<th>Detail</th>
+							<th>PIC 2</th>
+							<th>Remark 2</th>
+							<th>Detail 2</th>
 							<th>Location</th>
 							<!-- <th>Performance</th>
                             <th>Availability</th>

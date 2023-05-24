@@ -351,6 +351,9 @@ class Ajax extends CI_Controller
 				$row[] = $list->pic_name;
 				$row[] = $list->remark;
 				$row[] = $list->detail;
+				$row[] = $list->pic_name_2;
+				$row[] = $list->remark_2;
+				$row[] = $list->detail_2;
 				$row[] = $list->location;
 				// $row[] = $list->performance;
 				// $row[] = $list->availability;
@@ -379,6 +382,9 @@ class Ajax extends CI_Controller
 					"pic_name" => $this->input->post("pic_name"),
 					"remark" => $this->input->post("remark"),
 					"detail" => $this->input->post("detail"),
+					"pic_name_2" => $this->input->post("pic_name_2"),
+					"remark_2" => $this->input->post("remark_2"),
+					"detail_2" => $this->input->post("detail_2"),
 				);
 				$result = $this->log_model->edit_log($data);
 				if ($result > 0) {

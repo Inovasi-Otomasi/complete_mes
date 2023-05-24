@@ -568,23 +568,25 @@
 													</div>
 												</div>
 											</div>
-											<button type="button" class="btn bg-gradient-secondary me-1 w-100" data-bs-toggle="modal" data-bs-target="#modal-form-breakdown-<?php echo $line['id']; ?>"><i class="fas fa-angle-double-down" aria-hidden="true"></i>&nbsp;&nbsp;Breakdown</button>
-											<div class="modal text-start fade" id="modal-form-breakdown-<?php echo $line['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+											<button type="button" class="btn bg-gradient-secondary me-1 w-100" data-bs-toggle="modal" data-bs-target="#modal-form-additional-<?php echo $line['id']; ?>"><i class="fas fa-angle-double-up" aria-hidden="true"></i>&nbsp;&nbsp;Additional Product</button>
+											<div class="modal text-start fade" id="modal-form-additional-<?php echo $line['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered modal-md" role="document">
 													<div class="modal-content">
 														<div class="modal-body p-0">
 															<div class="card card-plain">
 																<div class="card-header pb-0 text-left">
-																	<h3 class="font-weight-bolder text-info text-gradient">Are you sure want to breakdown this operation?</h3>
+																	<h3 class="font-weight-bolder text-info text-gradient">Additional Product</h3>
 																</div>
 																<div class="card-body">
-																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/breakdown_operation">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/additional_operation">
 																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
-																		<input type="hidden" name="order_id" value="<?php echo $line['order_id']; ?>">
-																		<input type="hidden" name="prev_status" value="<?php echo $line['status']; ?>">
+																		<label>Add counter product</label>
+																		<div class="input-group mb-3">
+																			<input type="number" name="additional" class="form-control" min="0" value="<?php echo $line['additional']; ?>">
+																		</div>
 																		<div class="text-center">
-																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Yes</button>
-																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
+																			<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
 																		</div>
 																	</form>
 																</div>
@@ -592,6 +594,13 @@
 														</div>
 													</div>
 												</div>
+											</div>
+											<div class="row">
+												<p class="col-5 text-xl">Additional Product</p>
+												<p class="col-2 text-xl">:</p>
+												<p class="col-5 text-xl">
+													<span class="text-dark font-weight-bold" id='additional_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span>
+												</p>
 											</div>
 											<hr>
 											<button type="button" class="btn btn-danger me-1 w-100" data-bs-toggle="modal" data-bs-target="#modal-form-stop-<?php echo $line['id']; ?>"><i class="fas fa-stop" aria-hidden="true"></i>&nbsp;&nbsp;Stop</button>

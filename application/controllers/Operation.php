@@ -358,4 +358,26 @@ class Operation extends CI_Controller
 			}
 		}
 	}
+
+	public function additional_operation()
+	{
+		if ($this->session->userdata('username') != '') {
+			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
+				$arr_query = array(
+					'id' => $this->input->post('line_id'),
+					'additional' => $this->input->post('additional')
+				);
+				$result = $this->line_model->edit_additional($arr_query);
+				if ($result > 0) {
+					$current_line = $this->line_model->get_line_by_id($arr_query['id']);
+					$this->event_model->add_event(array("event" => "Additional count for line " . $current_line->line_name . " has been changed. [" . $arr_query['additional'] . "]"));
+					$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
+					redirect(base_url() . 'pages/dashboard');
+				} else {
+					$this->session->set_flashdata("failed", "Edit Line " . $arr_query['id'] . " Failed");
+					redirect(base_url() . 'pages/dashboard');
+				}
+			}
+		}
+	}
 }

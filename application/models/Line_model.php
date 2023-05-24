@@ -56,6 +56,7 @@ class Line_model extends CI_Model
 			$this->db->set('remark', '');
 			$this->db->set('acc_standby_time', 0);
 			$this->db->set('acc_setup_time', 0);
+			$this->db->set('additional', 0);
 		} elseif ($data['status'] == 'BREAKDOWN') {
 			$this->db->set('temp_time', $data['cycle_time']);
 		}
@@ -95,6 +96,7 @@ class Line_model extends CI_Model
 			$this->db->set('remark', '');
 			$this->db->set('acc_standby_time', 0);
 			$this->db->set('acc_setup_time', 0);
+			$this->db->set('additional', 0);
 		}
 		$this->db->update('manufacturing_line');
 		return $this->db->affected_rows();
@@ -198,6 +200,13 @@ class Line_model extends CI_Model
 	public function edit_ng($data)
 	{
 		$this->db->set('NG_count', $data['NG_count']);
+		$this->db->where('id', $data['id']);
+		$this->db->update('manufacturing_line');
+		return $this->db->affected_rows();
+	}
+	public function edit_additional($data)
+	{
+		$this->db->set('additional', $data['additional']);
 		$this->db->where('id', $data['id']);
 		$this->db->update('manufacturing_line');
 		return $this->db->affected_rows();
