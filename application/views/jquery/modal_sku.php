@@ -41,7 +41,7 @@
 											<input class="form-check-input" name="line_id[]" type="checkbox" value="<?php echo $line['id']; ?>">
 											<label class="custom-control-label"><?php echo $line['line_name']; ?></label>
 											<div class="input-group mb-2">
-												<input type="number" class="form-control" title="Cycle Time (second)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="0" required><span class="input-group-text">s</span>
+												<input type="number" step="any" class="form-control" title="Cycle Time (second)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="0" required><span class="input-group-text">s</span>
 											</div>
 											<div class="input-group">
 												<input type="number" class="form-control" title="Quantity" placeholder="Quantity" name="quantity_sku_<?php echo $line['id'] ?>" value="0" step="any" required><span class="input-group-text">pcs</span>
