@@ -466,35 +466,6 @@
 		setInterval(time, 1000);
 	});
 </script>
-<!-- <script>
-	let avg_log = function() {
-		$.ajax({
-			type: 'GET',
-			url: '<?php echo base_url() . '/ajax/get_avg_log'; ?>',
-			async: true,
-			dataType: 'json',
-			success: function(data) {
-				$("#repot_oee").gaugeMeter({
-					percent: data.avg_oee,
-					text: data.avg_oee.toFixed(1)
-				});
-				$("#report_performance").gaugeMeter({
-					percent: data.avg_performance,
-					text: data.avg_performance.toFixed(1)
-				});
-				$("#report_availability").gaugeMeter({
-					percent: data.avg_availability,
-					text: data.avg_availability.toFixed(1)
-				});
-				$("#report_quality").gaugeMeter({
-					percent: data.avg_quality,
-					text: data.avg_quality.toFixed(1)
-				});
-			}
-		});
-	}
-	setInterval(avg_log, 1000);
-</script> -->
 <script src="<?php echo base_url(); ?>assets/js/GaugeMeter.js"></script>
 <script>
 	$(document).ready(function() {
