@@ -84,6 +84,10 @@ class Export_model extends CI_Model
 		$sheet->setCellValue('I' . 3, 'Quality');
 		$sheet->setCellValue('J' . 3, 'Run Time');
 		$sheet->setCellValue('K' . 3, 'Down Time');
+		$sheet->setCellValue('L' . 3, 'PIC');
+		$sheet->setCellValue('M' . 3, 'Remark');
+		$sheet->setCellValue('N' . 3, 'Detail');
+		$sheet->setCellValue('O' . 3, 'Location');
 		$sheet->getStyle('A3')->applyFromArray($style_col);
 		$sheet->getStyle('B3')->applyFromArray($style_col);
 		$sheet->getStyle('C3')->applyFromArray($style_col);
@@ -95,6 +99,10 @@ class Export_model extends CI_Model
 		$sheet->getStyle('I3')->applyFromArray($style_col);
 		$sheet->getStyle('J3')->applyFromArray($style_col);
 		$sheet->getStyle('K3')->applyFromArray($style_col);
+		$sheet->getStyle('L3')->applyFromArray($style_col);
+		$sheet->getStyle('M3')->applyFromArray($style_col);
+		$sheet->getStyle('N3')->applyFromArray($style_col);
+		$sheet->getStyle('O3')->applyFromArray($style_col);
 		$numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
 		foreach ($query->result_array() as $data) { // Lakukan looping pada variabel siswa
 			$sheet->setCellValue('A' . $numrow, $data['timestamp']);
@@ -108,6 +116,10 @@ class Export_model extends CI_Model
 			$sheet->setCellValue('I' . $numrow, $data['quality']);
 			$sheet->setCellValue('J' . $numrow, $data['run_time']);
 			$sheet->setCellValue('K' . $numrow, $data['down_time']);
+			$sheet->setCellValue('L' . $numrow, $data['pic_name']);
+			$sheet->setCellValue('M' . $numrow, $data['remark']);
+			$sheet->setCellValue('N' . $numrow, $data['detail']);
+			$sheet->setCellValue('O' . $numrow, $data['location']);
 			$sheet->getStyle('A' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('B' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('C' . $numrow)->applyFromArray($style_row);
@@ -119,6 +131,10 @@ class Export_model extends CI_Model
 			$sheet->getStyle('I' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('J' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('K' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('L' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('M' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('N' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('O' . $numrow)->applyFromArray($style_row);
 
 			$numrow++; // Tambah 1 setiap kali looping
 		}
@@ -134,6 +150,11 @@ class Export_model extends CI_Model
 		$sheet->getColumnDimension('I')->setAutoSize(true); // Set width kolom E
 		$sheet->getColumnDimension('J')->setAutoSize(true); // Set width kolom E
 		$sheet->getColumnDimension('K')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('L')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('M')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('N')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('O')->setAutoSize(true); // Set width kolom E
+
 		$writer = new Xlsx($spreadsheet);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
 
