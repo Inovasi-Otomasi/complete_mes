@@ -261,7 +261,7 @@ class Ajax extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'edit_sku'], $this->session->userdata('privileges'))) {
-				$required_inv = $this->input->post('inv');
+				$required_inv = $this->input->post('inv') ?: array();
 				$requirements = array();
 				foreach ($required_inv as $inv) {
 					$ching = array(
