@@ -17,12 +17,12 @@
 							<th>Item Counter</th>
 							<th>NG Count</th>
 							<th>Status</th>
-							<th>PIC</th>
-							<th>Remark</th>
-							<th>Detail</th>
-							<th>PIC 2</th>
-							<th>Remark 2</th>
-							<th>Detail 2</th>
+							<th>PIC Operator</th>
+							<th>Remark Operator</th>
+							<th>Detail Operator</th>
+							<th>PIC Engineer</th>
+							<th>Remark Engineer</th>
+							<th>Detail Engineer</th>
 							<th>Location</th>
 							<!-- <th>Performance</th>
                             <th>Availability</th>
@@ -41,12 +41,12 @@
 							<th>Item Counter</th>
 							<th>NG Count</th>
 							<th>Status</th>
-							<th>PIC</th>
-							<th>Remark</th>
-							<th>Detail</th>
-							<th>PIC 2</th>
-							<th>Remark 2</th>
-							<th>Detail 2</th>
+							<th>PIC Operator</th>
+							<th>Remark Operator</th>
+							<th>Detail Operator</th>
+							<th>PIC Engineer</th>
+							<th>Remark Engineer</th>
+							<th>Detail Engineer</th>
 							<th>Location</th>
 							<!-- <th>Performance</th>
                             <th>Availability</th>
