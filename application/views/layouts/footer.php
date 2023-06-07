@@ -256,6 +256,9 @@
 							// $("#ng_count_form_" + data[i].id).val(data[i].NG_count);
 							$("#status_" + data[i].id).html(data[i].status);
 							$("#order_id_" + data[i].id).html(data[i].order_id);
+							$("#batch_id_" + data[i].id).html(data[i].batch_id);
+							$("#lot_number_" + data[i].id).html(data[i].lot_number);
+							$("#small_stop_time_" + data[i].id).html(data[i].small_stop_time);
 							$("#target_" + data[i].id).html(data[i].target);
 						}
 					}

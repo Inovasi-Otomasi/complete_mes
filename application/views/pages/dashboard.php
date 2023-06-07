@@ -289,23 +289,36 @@
 																		<div class="input-group mb-3 row">
 																			<div class="col">
 																				<select class="selectize" id="setup_detail" name="setup_detail">
-																					<option value="0" <?php if ($line['remark'] == '') echo "selected"; ?>>None (0 Second)</option>
+																					<option value="0" <?php if ($line['remark'] == '') echo "selected"; ?>>None (0 Detik)</option>
 																					<?php foreach ($remark_list as $remark) : ?>
 																						<?php if ($remark['status'] == 'SETUP') : ?>
-																							<option value="<?php echo $remark['detail']; ?>" <?php if ($line['remark'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Seconds)'; ?></option>
+																							<option value="<?php echo $remark['detail']; ?>" <?php if ($line['remark'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Detik)'; ?></option>
 																						<?php endif; ?>
 																					<?php endforeach; ?>
 																				</select>
 																			</div>
 																		</div>
-																		<label>Order ID</label>
+																		<label>Small Stop Time</label>
+																		<div class="input-group mb-3 row">
+																			<div class="col">
+																				<select class="selectize" id="small_stop_detail" name="small_stop_detail">
+																					<option value="0" <?php if ($line['small_stop_detail'] == '') echo "selected"; ?>>None (0 Detik)</option>
+																					<?php foreach ($remark_list as $remark) : ?>
+																						<?php if ($remark['status'] == 'SMALL STOP') : ?>
+																							<option value="<?php echo $remark['detail']; ?>" <?php if ($line['small_stop_detail'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Detik)'; ?></option>
+																						<?php endif; ?>
+																					<?php endforeach; ?>
+																				</select>
+																			</div>
+																		</div>
+																		<label>Order</label>
 																		<div class="input-group mb-3 row">
 																			<div class="col">
 																				<select class="selectize" id="order_id" name="order_id" required>
 																					<?php foreach ($order_list as $order) : ?>
 																						<?php foreach (json_decode($order['line_rules'], true) as $rule) : ?>
 																							<?php if ($rule['start_job'] == 0 && $rule['line_name'] == $line['line_name']) : ?>
-																								<option value="<?php echo $order['id']; ?>" <?php if ($line['order_id'] == $order['id']) echo "selected"; ?>><?php echo "ID: " . $order['id'] . " | " . $order['sku_code'] . " | " . $order['quantity'] . " pcs"; ?></option>
+																								<option value="<?php echo $order['id']; ?>" <?php if ($line['order_id'] == $order['id']) echo "selected"; ?>><?php echo "Batch Number: " . $order['batch_id'] . " | " . $order['sku_code'] . " | " . $order['quantity'] . " pcs"; ?></option>
 																							<?php endif; ?>
 																						<?php endforeach; ?>
 																					<?php endforeach; ?>
@@ -453,9 +466,15 @@
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl my-0 py-0">Order ID</p>
+												<p class="col-5 text-xl my-0 py-0">Batch Number</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='order_id_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='batch_id_<?php echo $line['id']; ?>'></span></p>
+											</div>
+											<hr class="my-1 py-0">
+											<div class="row">
+												<p class="col-5 text-xl my-0 py-0">Lot Number</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='lot_number_<?php echo $line['id']; ?>'></span></p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
@@ -467,25 +486,31 @@
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Setup Allowance Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='setup_time_<?php echo $line['id']; ?>'></span> s</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='setup_time_<?php echo $line['id']; ?>'></span> detik</p>
+											</div>
+											<hr class="my-1 py-0">
+											<div class="row">
+												<p class="col-5 text-xl my-0 py-0">Small Stop Time</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='small_stop_time_<?php echo $line['id']; ?>'></span> detik</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Cycle Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='cycle_time_<?php echo $line['id']; ?>'></span> s</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='cycle_time_<?php echo $line['id']; ?>'></span> detik</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Run Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='run_time_<?php echo $line['id']; ?>'></span> s</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='run_time_<?php echo $line['id']; ?>'></span> detik</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Down Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='down_time_<?php echo $line['id']; ?>'></span> s</p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='down_time_<?php echo $line['id']; ?>'></span> detik</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
@@ -552,7 +577,7 @@
 																			<select class="form-select" id="remark_id" name="remark_id">
 																				<?php foreach ($remark_list as $list) : ?>
 																					<?php if ($list['status'] == 'STANDBY') : ?>
-																						<option value="<?php echo $list['id']; ?>"><?php echo $list['detail'] . ' (' . $list['remark_time'] . ' Seconds)'; ?></option>
+																						<option value="<?php echo $list['id']; ?>"><?php echo $list['detail'] . ' (' . $list['remark_time'] . ' Detik)'; ?></option>
 																					<?php endif; ?>
 																				<?php endforeach; ?>
 																			</select>

@@ -21,10 +21,14 @@ class Line_model extends CI_Model
 	{
 		$this->db->set('sku_code', $data['sku_code']);
 		$this->db->set('order_id', $data['order_id']);
+		$this->db->set('batch_id', $data['batch_id']);
+		$this->db->set('lot_number', $data['lot_number']);
 		$this->db->set('target', $data['target']);
 		$this->db->set('setup_time', $data['setup_time']);
 		$this->db->set('cycle_time', $data['cycle_time']);
 		$this->db->set('remark', $data['remark']);
+		$this->db->set('small_stop_time', $data['small_stop_time']);
+		$this->db->set('small_stop_detail', $data['small_stop_detail']);
 		$this->db->where('id', $data['id']);
 		$this->db->update('manufacturing_line');
 		return $this->db->affected_rows();

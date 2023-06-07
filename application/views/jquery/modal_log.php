@@ -11,7 +11,7 @@
 						<div class="card-body text-start">
 							<form role="form" method="post" action="<?php echo base_url(); ?>ajax/edit_log">
 								<input type="hidden" name="id" value="<?php echo $id; ?>" />
-								<label>PIC</label>
+								<label>PIC Operator</label>
 								<div class="input-group mb-3 row">
 									<select id="pic_name-<?php echo $id; ?>" name="pic_name">
 										<?php foreach ($pic_list as $pic) : ?>
@@ -19,7 +19,7 @@
 										<?php endforeach; ?>
 									</select>
 								</div>
-								<label>Remark</label>
+								<label>Remark Operator</label>
 								<div class="input-group mb-3 row">
 									<select id="remark-<?php echo $id; ?>" name="remark">
 										<?php foreach ($remark_list as $list) : ?>
@@ -30,11 +30,11 @@
 									</select>
 								</div>
 
-								<label>Detail</label>
+								<label>Detail Operator</label>
 								<div class="input-group mb-3">
 									<input type="text" class="form-control" placeholder="Detail" name="detail" value="<?php echo $detail; ?>" required>
 								</div>
-								<label>PIC 2</label>
+								<label>PIC Engineer</label>
 								<div class="input-group mb-3 row">
 									<select id="pic_name_2-<?php echo $id; ?>" name="pic_name_2">
 										<?php foreach ($pic_list as $pic) : ?>
@@ -42,7 +42,7 @@
 										<?php endforeach; ?>
 									</select>
 								</div>
-								<label>Remark 2</label>
+								<label>Remark Engineer</label>
 								<div class="input-group mb-3 row">
 									<select id="remark_2-<?php echo $id; ?>" name="remark_2">
 										<?php foreach ($remark_list as $list) : ?>
@@ -58,7 +58,7 @@
 									$('#pic_name_2-<?php echo $id; ?>').selectize({});
 									$('#remark_2-<?php echo $id; ?>').selectize({});
 								</script>
-								<label>Detail 2</label>
+								<label>Detail Engineer</label>
 								<div class="input-group mb-3">
 									<input type="text" class="form-control" placeholder="Detail 2" name="detail_2" value="<?php echo $detail_2; ?>" required>
 								</div>

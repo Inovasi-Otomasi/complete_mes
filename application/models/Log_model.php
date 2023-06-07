@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Log_model extends CI_Model
 {
 	var $table = 'log_oee';
-	var $column_order = array('id', 'timestamp', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'performance', 'availability', 'quality', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location', null, null); //set column field database for datatable orderable
-	var $column_search = array('id', 'timestamp', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'performance', 'availability', 'quality', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location'); //set column field database for datatable searchable 
+	var $column_order = array('id', 'timestamp', 'batch_id', 'lot_number', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'performance', 'availability', 'quality', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location', null, null); //set column field database for datatable orderable
+	var $column_search = array('id', 'timestamp', 'batch_id', 'lot_number', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'performance', 'availability', 'quality', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location'); //set column field database for datatable searchable 
 	var $order = array('id' => 'asc'); // default order 
 	// var $sql_table = "select * from (SELECT *,(LAG(status, 1) OVER (PARTITION BY line_name ORDER BY timestamp)) as prev_status FROM log_oee) as t where status!=prev_status and status='BREAKDOWN'";
 	public function __construct()

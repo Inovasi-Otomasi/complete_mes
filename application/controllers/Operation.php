@@ -36,6 +36,7 @@ class Operation extends CI_Controller
 					$single_order = $this->order_model->get_order_by_id($this->input->post('order_id'));
 					// $single_sku = $this->sku_model->get_sku_by_name($single_order->sku_code);
 					$single_remark = $this->remark_model->get_remark_by_detail($this->input->post('setup_detail'));
+					$small_stop_remark = $this->remark_model->get_remark_by_detail($this->input->post('small_stop_detail'));
 					$line_rules = json_decode($single_order->line_rules, true);
 					$line_name = $this->line_model->get_line_by_id($this->input->post('line_id'))->line_name;
 					$ct = array_column($line_rules, null, "line_name")[$line_name]['cycle_time'];
@@ -44,10 +45,14 @@ class Operation extends CI_Controller
 						'id' => $this->input->post('line_id'),
 						'sku_code' => $single_order->sku_code,
 						'order_id' => $single_order->id,
+						'batch_id' => $single_order->batch_id,
+						'lot_number' => $single_order->lot_number,
 						'setup_time' => $single_remark ? $single_remark->remark_time : 0,
 						'cycle_time' => $ct ?: 0,
 						'target' => $quantity,
-						'remark' => $single_remark ? $single_remark->detail : 'None'
+						'remark' => $single_remark ? $single_remark->detail : 'None',
+						'small_stop_time' => $small_stop_remark ? $small_stop_remark->remark_time : 0,
+						'small_stop_detail' => $small_stop_remark ? $small_stop_remark->detail : 'None',
 					);
 					$result = $this->line_model->edit_line($arr_query);
 					if ($result > 0) {

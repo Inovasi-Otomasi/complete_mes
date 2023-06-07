@@ -16,13 +16,14 @@
 									<option value="SETUP" <?php if ($status == "SETUP") echo "selected"; ?>>SETUP</option>
 									<option value="STANDBY" <?php if ($status == "STANDBY") echo "selected"; ?>>STANDBY</option>
 									<option value="DOWN TIME" <?php if ($status == "DOWN TIME") echo "selected"; ?>>DOWN TIME</option>
+									<option value="SMALL STOP" <?php if ($status == "SMALL STOP") echo "selected"; ?>>SMALL STOP</option>
 								</select>
 							</div>
 							<label>Remark</label>
 							<div class="input-group mb-3">
 								<input class="form-control" type="text" placeholder="Remark" name='remark' value="<?php echo $detail; ?>" required>
 							</div>
-							<label>Remark Time (Second) Note: ignore for DOWN TIME</label>
+							<label>Remark Time (Detik) Note: ignore for DOWN TIME</label>
 							<div class="input-group mb-3">
 								<input class="form-control" type="number" placeholder="Remark Time" name='remark_time' value="<?php echo $remark_time; ?>" required>
 							</div>

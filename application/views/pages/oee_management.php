@@ -54,7 +54,7 @@
 																	<input class="form-check-input" name="line_id[]" type="checkbox" value="<?php echo $line['id']; ?>">
 																	<label class="custom-control-label"><?php echo $line['line_name']; ?></label>
 																	<div class="input-group mb-2">
-																		<input type="number" step="any" class="form-control" title="Cycle Time (second)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="0" required><span class="input-group-text">s</span>
+																		<input type="number" step="any" class="form-control" title="Cycle Time (Detik)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="0" required><span class="input-group-text">detik</span>
 																	</div>
 																	<div class="input-group">
 																		<input type="number" class="form-control" title="Quantity" placeholder="Quantity" name="quantity_sku_<?php echo $line['id'] ?>" value="0" step="any" required><span class="input-group-text">pcs</span>
@@ -62,7 +62,7 @@
 																</div>
 															<?php endforeach; ?>
 														</div>
-														<label>Required Material</label>
+														<!-- <label>Required Material</label>
 														<div class="container row mb-3">
 															<?php if (!$inventory_info) : ?>
 																<div class="badge bg-gradient-warning">No Items Found</div>
@@ -74,7 +74,7 @@
 																	<input type="number" class="form-control" title="Quantity" placeholder="Quantity" name="quantity_<?php echo $list['id'] ?>" value="0" required>
 																</div>
 															<?php endforeach; ?>
-														</div>
+														</div> -->
 														<div class="text-center">
 															<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
 															<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -209,13 +209,14 @@
 																<option value="SETUP">SETUP</option>
 																<option value="STANDBY">STANDBY</option>
 																<option value="DOWN TIME">DOWN TIME</option>
+																<option value="SMALL STOP">SMALL STOP</option>
 															</select>
 														</div>
 														<label>Remark</label>
 														<div class="input-group mb-3">
 															<input class="form-control" type="text" placeholder="Remark" name='remark' required>
 														</div>
-														<label>Remark Time (Second) Note: ignore for DOWN TIME</label>
+														<label>Remark Time (Detik) Note: ignore for DOWN TIME</label>
 														<div class="input-group mb-3">
 															<input class="form-control" type="number" placeholder="Remark Time" name='remark_time' value="0" required>
 														</div>

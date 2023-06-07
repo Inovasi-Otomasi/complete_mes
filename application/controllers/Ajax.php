@@ -69,6 +69,8 @@ class Ajax extends CI_Controller
 				$line_names .= '</ul>';
 				$row = array();
 				$row[] = $list->id;
+				$row[] = $list->batch_id;
+				$row[] = $list->lot_number;
 				$row[] = $line_names;
 				$row[] = $list->sku_code;
 				$row[] = $list->quantity;
@@ -109,6 +111,8 @@ class Ajax extends CI_Controller
 				$data = array(
 					"sku_code" => $this->input->post("sku_code"),
 					"line_rules" => $single_sku->line_rules,
+					"batch_id" => $this->input->post("batch_id"),
+					"lot_number" => $this->input->post("lot_number"),
 					"quantity" => $this->input->post("quantity"),
 					"storage" => $this->input->post("storage")
 				);
@@ -343,6 +347,8 @@ class Ajax extends CI_Controller
 				$row = array();
 				$row[] = $list->id;
 				$row[] = $list->timestamp;
+				$row[] = $list->batch_id;
+				$row[] = $list->lot_number;
 				$row[] = $list->line_name;
 				$row[] = $list->sku_code;
 				$row[] = $list->item_counter;

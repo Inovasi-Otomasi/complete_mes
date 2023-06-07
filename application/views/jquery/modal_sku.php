@@ -27,7 +27,7 @@
 												<input class="form-check-input" name="line_id[]" type="checkbox" value="<?php echo $line['id']; ?>" checked>
 												<label class="custom-control-label"><?php echo $line['line_name']; ?></label>
 												<div class="input-group mb-2">
-													<input type="number" step="any" class="form-control" title="Cycle Time (second)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="<?php echo $line2['cycle_time']; ?>" required><span class="input-group-text">s</span>
+													<input type="number" step="any" class="form-control" title="Cycle Time (Detik)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="<?php echo $line2['cycle_time']; ?>" required><span class="input-group-text">detik</span>
 												</div>
 												<div class="input-group">
 													<input type="number" class="form-control" title="Quantity" placeholder="Quantity" name="quantity_sku_<?php echo $line['id'] ?>" value="<?php echo $line2['quantity']; ?>" step="any" required><span class="input-group-text">pcs</span>
@@ -41,7 +41,7 @@
 											<input class="form-check-input" name="line_id[]" type="checkbox" value="<?php echo $line['id']; ?>">
 											<label class="custom-control-label"><?php echo $line['line_name']; ?></label>
 											<div class="input-group mb-2">
-												<input type="number" step="any" class="form-control" title="Cycle Time (second)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="0" required><span class="input-group-text">s</span>
+												<input type="number" step="any" class="form-control" title="Cycle Time (Detik)" placeholder="Cycle Time" name="cycle_time_<?php echo $line['id'] ?>" value="0" required><span class="input-group-text">detik</span>
 											</div>
 											<div class="input-group">
 												<input type="number" class="form-control" title="Quantity" placeholder="Quantity" name="quantity_sku_<?php echo $line['id'] ?>" value="0" step="any" required><span class="input-group-text">pcs</span>
@@ -51,7 +51,7 @@
 
 								<?php endforeach; ?>
 							</div>
-							<label>Required Inventory</label>
+							<!-- <label>Required Inventory</label>
 							<div class="container row mb-3">
 								<?php if (!$inv) : ?>
 									<div class="badge bg-gradient-warning">No Items Found</div>
@@ -78,7 +78,7 @@
 										<?php array_push($leftover, $list['inventory_code']); ?>
 									<?php endif; ?>
 								<?php endforeach; ?>
-							</div>
+							</div> -->
 							<div class="text-center">
 								<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
 								<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
