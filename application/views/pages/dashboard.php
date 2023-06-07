@@ -461,37 +461,37 @@
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Target Item</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='target_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='target_<?php echo $line['id']; ?>'></span> pcs</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Setup Allowance Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='setup_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='setup_time_<?php echo $line['id']; ?>'></span> s</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Cycle Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='cycle_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='cycle_time_<?php echo $line['id']; ?>'></span> s</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Run Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='run_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='run_time_<?php echo $line['id']; ?>'></span> s</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Down Time</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='down_time_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='down_time_<?php echo $line['id']; ?>'></span> s</p>
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Item Counter</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
-												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='item_counter_<?php echo $line['id']; ?>'></span></p>
+												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='item_counter_<?php echo $line['id']; ?>'></span> pcs</p>
 											</div>
 
 											<!-- <div class="row">
@@ -599,7 +599,7 @@
 												<p class="col-5 text-xl">Additional Product</p>
 												<p class="col-2 text-xl">:</p>
 												<p class="col-5 text-xl">
-													<span class="text-dark font-weight-bold" id='additional_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span>
+													<span class="text-dark font-weight-bold" id='additional_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span> pcs
 												</p>
 											</div>
 											<hr>
@@ -631,7 +631,7 @@
 												<p class="col-5 text-xl">NG Product</p>
 												<p class="col-2 text-xl">:</p>
 												<p class="col-5 text-xl">
-													<span class="text-dark font-weight-bold" id='NG_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span>
+													<span class="text-dark font-weight-bold" id='NG_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span> pcs
 												</p>
 											</div>
 											<div class="text-center">
