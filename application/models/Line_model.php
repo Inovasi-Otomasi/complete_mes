@@ -41,7 +41,11 @@ class Line_model extends CI_Model
 			$this->db->set('remark', $data['remark']);
 		} elseif ($data['status'] == 'STOP') {
 			$this->db->set('sku_code', 'None');
+			$this->db->set('small_stop_detail', '');
+			$this->db->set('small_stop_time', 0);
 			$this->db->set('order_id', 0);
+			$this->db->set('batch_id', 0);
+			$this->db->set('lot_number', 0);
 			$this->db->set('setup_time', 0);
 			$this->db->set('cycle_time', 0);
 			$this->db->set('run_time', 0);
@@ -82,6 +86,11 @@ class Line_model extends CI_Model
 		if ($data['status'] == 'STOP') {
 			$this->db->set('sku_code', 'None');
 			$this->db->set('order_id', 0);
+			$this->db->set('small_stop_detail', '');
+			$this->db->set('small_stop_time', 0);
+			$this->db->set('order_id', 0);
+			$this->db->set('batch_id', 0);
+			$this->db->set('lot_number', 0);
 			$this->db->set('setup_time', 0);
 			$this->db->set('cycle_time', 0);
 			$this->db->set('run_time', 0);
