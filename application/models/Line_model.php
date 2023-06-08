@@ -49,7 +49,8 @@ class Line_model extends CI_Model
 			$this->db->set('setup_time', 0);
 			$this->db->set('cycle_time', 0);
 			$this->db->set('run_time', 0);
-			$this->db->set('down_time', 0);
+			// $this->db->set('down_time', 0);
+			//disabled for engine use
 			$this->db->set('temp_time', 0);
 			$this->db->set('item_counter', 0);
 			$this->db->set('prev_item_counter', 0);
@@ -94,7 +95,8 @@ class Line_model extends CI_Model
 			$this->db->set('setup_time', 0);
 			$this->db->set('cycle_time', 0);
 			$this->db->set('run_time', 0);
-			$this->db->set('down_time', 0);
+			// $this->db->set('down_time', 0);
+			//disabled for engine use
 			$this->db->set('temp_time', 0);
 			$this->db->set('item_counter', 0);
 			$this->db->set('prev_item_counter', 0);

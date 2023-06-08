@@ -140,8 +140,7 @@ class Operation extends CI_Controller
 					if ($result > 0) {
 						$single_order = $this->order_model->get_order_by_id($this->input->post('order_id'));
 						$line_name = $this->line_model->get_line_by_id($this->input->post('line_id'))->line_name;
-
-						$line_rules = json_decode($single_order->line_rules, true);
+						$line_rules = json_decode($single_order->line_rules, true) ?: array();
 						$new_line_rules = array();
 						foreach ($line_rules as $rule) {
 							if ($rule['line_name'] == $line_name) {
@@ -306,7 +305,7 @@ class Operation extends CI_Controller
 					if ($result > 0) {
 						$single_order = $this->order_model->get_order_by_id($line['order_id']);
 						$line_name = $this->line_model->get_line_by_id($line['id'])->line_name;
-						$line_rules = json_decode($single_order->line_rules, true);
+						$line_rules = json_decode($single_order->line_rules, true) ?: array();
 						$new_line_rules = array();
 						foreach ($line_rules as $rule) {
 							if ($rule['line_name'] == $line_name) {
