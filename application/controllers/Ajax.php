@@ -354,6 +354,7 @@ class Ajax extends CI_Controller
 				$row[] = $list->item_counter;
 				$row[] = $list->NG_count;
 				$row[] = $list->status;
+				$row[] = $list->delta_down_time;
 				$row[] = $list->pic_name;
 				$row[] = $list->remark;
 				$row[] = $list->detail;

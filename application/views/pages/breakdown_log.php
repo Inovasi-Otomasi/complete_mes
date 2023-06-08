@@ -19,6 +19,7 @@
 							<th>Item Counter</th>
 							<th>NG Count</th>
 							<th>Status</th>
+							<th>Delta Downtime</th>
 							<th>PIC Operator</th>
 							<th>Remark Operator</th>
 							<th>Detail Operator</th>
@@ -45,6 +46,7 @@
 							<th>Item Counter</th>
 							<th>NG Count</th>
 							<th>Status</th>
+							<th>Delta Downtime</th>
 							<th>PIC Operator</th>
 							<th>Remark Operator</th>
 							<th>Detail Operator</th>
