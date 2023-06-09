@@ -139,13 +139,18 @@ class Ajax extends CI_Controller
 			if ($this->in_array_any(['admin', 'delete_order'], $this->session->userdata('privileges'))) {
 				$id = $_GET['id'];
 				$singel_order = $this->order_model->get_order_by_id($id);
-				$result = $this->order_model->delete_order($id);
-				if ($result > 0) {
-					$this->event_model->add_event(array("event" => "Order ID " . $id . " has been deleted. [" . $singel_order->sku_code . ": " . $singel_order->quantity . " pcs]"));
-					$this->session->set_flashdata("success", "Order ID " . $id . " Succesfully Deleted");
-					redirect(base_url() . 'pages/order');
+				if ($singel_order->status != 'Work In Progress') {
+					$result = $this->order_model->delete_order($id);
+					if ($result > 0) {
+						$this->event_model->add_event(array("event" => "Order ID " . $id . " has been deleted. [" . $singel_order->sku_code . ": " . $singel_order->quantity . " pcs]"));
+						$this->session->set_flashdata("success", "Order ID " . $id . " Succesfully Deleted");
+						redirect(base_url() . 'pages/order');
+					} else {
+						$this->session->set_flashdata("failed", "Delete Failed");
+						redirect(base_url() . 'pages/order');
+					}
 				} else {
-					$this->session->set_flashdata("failed", "Delete Failed");
+					$this->session->set_flashdata("failed", "Delete Failed, Work in progress");
 					redirect(base_url() . 'pages/order');
 				}
 			} else {
