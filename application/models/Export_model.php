@@ -17,17 +17,15 @@ class Export_model extends CI_Model
 	{
 		// var_dump($json_arr['sku_code']);
 		$spreadsheet = new Spreadsheet();
-		$spreadsheet->getSecurity()->setLockWindows(true);
-		$spreadsheet->getSecurity()->setLockStructure(true);
-		$spreadsheet->getSecurity()->setWorkbookPassword("adminiot");
-		// $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('./assets/excell/TemplateProduktivitas_r8_1.xlsx');
+		// $spreadsheet->getSecurity()->setLockWindows(true);
+		// $spreadsheet->getSecurity()->setLockStructure(true);
+		// $spreadsheet->getSecurity()->setWorkbookPassword("adminiot");
 		$sheet = $spreadsheet->getActiveSheet();
-		$spreadsheet->getActiveSheet()->getProtection()->setPassword('adminiot');
-		$spreadsheet->getActiveSheet()->getProtection()->setSheet(true);
-		$spreadsheet->getActiveSheet()->getProtection()->setSort(true);
-		$spreadsheet->getActiveSheet()->getProtection()->setInsertRows(true);
-		$spreadsheet->getActiveSheet()->getProtection()->setFormatCells(true);
-		// $sheet = $spreadsheet->getSheetByName('Report');
+		// $spreadsheet->getActiveSheet()->getProtection()->setPassword('adminiot');
+		// $spreadsheet->getActiveSheet()->getProtection()->setSheet(true);
+		// $spreadsheet->getActiveSheet()->getProtection()->setSort(true);
+		// $spreadsheet->getActiveSheet()->getProtection()->setInsertRows(true);
+		// $spreadsheet->getActiveSheet()->getProtection()->setFormatCells(true);
 
 		$style_col = [
 			'font' => ['bold' => true], // Set font nya jadi bold
