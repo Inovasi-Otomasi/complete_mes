@@ -75,22 +75,25 @@ class Export_model extends CI_Model
 		$query = $this->db->get();
 		$sheet->setCellValue('A' . 3, 'Timestamp');
 		$sheet->setCellValue('B' . 3, 'Line Name');
-		$sheet->setCellValue('C' . 3, 'SKU Code');
-		$sheet->setCellValue('D' . 3, 'Item Counter');
-		$sheet->setCellValue('E' . 3, 'NG Count');
-		$sheet->setCellValue('F' . 3, 'Status');
-		$sheet->setCellValue('G' . 3, 'Performance');
-		$sheet->setCellValue('H' . 3, 'Availability');
-		$sheet->setCellValue('I' . 3, 'Quality');
-		$sheet->setCellValue('J' . 3, 'Run Time');
-		$sheet->setCellValue('K' . 3, 'Down Time');
-		$sheet->setCellValue('L' . 3, 'PIC Operator');
-		$sheet->setCellValue('M' . 3, 'Remark Operator');
-		$sheet->setCellValue('N' . 3, 'Detail Operator');
-		$sheet->setCellValue('O' . 3, 'PIC Engineer');
-		$sheet->setCellValue('P' . 3, 'Remark Engineer');
-		$sheet->setCellValue('Q' . 3, 'Detail Engineer');
-		$sheet->setCellValue('R' . 3, 'Location');
+		$sheet->setCellValue('C' . 3, 'Batch Number');
+		$sheet->setCellValue('D' . 3, 'Lot Number');
+		$sheet->setCellValue('E' . 3, 'SKU Code');
+		$sheet->setCellValue('F' . 3, 'Item Counter');
+		$sheet->setCellValue('G' . 3, 'NG Count');
+		$sheet->setCellValue('H' . 3, 'Status');
+		$sheet->setCellValue('I' . 3, 'Performance');
+		$sheet->setCellValue('J' . 3, 'Availability');
+		$sheet->setCellValue('K' . 3, 'Quality');
+		$sheet->setCellValue('L' . 3, 'Run Time');
+		$sheet->setCellValue('M' . 3, 'Down Time');
+		$sheet->setCellValue('N' . 3, 'Delta Down Time');
+		$sheet->setCellValue('O' . 3, 'PIC Operator');
+		$sheet->setCellValue('P' . 3, 'Remark Operator');
+		$sheet->setCellValue('Q' . 3, 'Detail Operator');
+		$sheet->setCellValue('R' . 3, 'PIC Engineer');
+		$sheet->setCellValue('S' . 3, 'Remark Engineer');
+		$sheet->setCellValue('T' . 3, 'Detail Engineer');
+		$sheet->setCellValue('U' . 3, 'Location');
 		$sheet->getStyle('A3')->applyFromArray($style_col);
 		$sheet->getStyle('B3')->applyFromArray($style_col);
 		$sheet->getStyle('C3')->applyFromArray($style_col);
@@ -109,26 +112,32 @@ class Export_model extends CI_Model
 		$sheet->getStyle('P3')->applyFromArray($style_col);
 		$sheet->getStyle('Q3')->applyFromArray($style_col);
 		$sheet->getStyle('R3')->applyFromArray($style_col);
+		$sheet->getStyle('S3')->applyFromArray($style_col);
+		$sheet->getStyle('T3')->applyFromArray($style_col);
+		$sheet->getStyle('u3')->applyFromArray($style_col);
 		$numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
 		foreach ($query->result_array() as $data) { // Lakukan looping pada variabel siswa
 			$sheet->setCellValue('A' . $numrow, $data['timestamp']);
 			$sheet->setCellValue('B' . $numrow, $data['line_name']);
-			$sheet->setCellValue('C' . $numrow, $data['sku_code']);
-			$sheet->setCellValue('D' . $numrow, $data['item_counter']);
-			$sheet->setCellValue('E' . $numrow, $data['NG_count']);
-			$sheet->setCellValue('F' . $numrow, $data['status']);
-			$sheet->setCellValue('G' . $numrow, $data['performance']);
-			$sheet->setCellValue('H' . $numrow, $data['availability']);
-			$sheet->setCellValue('I' . $numrow, $data['quality']);
-			$sheet->setCellValue('J' . $numrow, $data['run_time']);
-			$sheet->setCellValue('K' . $numrow, $data['down_time']);
-			$sheet->setCellValue('L' . $numrow, $data['pic_name']);
-			$sheet->setCellValue('M' . $numrow, $data['remark']);
-			$sheet->setCellValue('N' . $numrow, $data['detail']);
-			$sheet->setCellValue('O' . $numrow, $data['pic_name_2']);
-			$sheet->setCellValue('P' . $numrow, $data['remark_2']);
-			$sheet->setCellValue('Q' . $numrow, $data['detail_2']);
-			$sheet->setCellValue('R' . $numrow, $data['location']);
+			$sheet->setCellValue('C' . $numrow, $data['batch_id']);
+			$sheet->setCellValue('D' . $numrow, $data['lot_number']);
+			$sheet->setCellValue('E' . $numrow, $data['sku_code']);
+			$sheet->setCellValue('F' . $numrow, $data['item_counter']);
+			$sheet->setCellValue('G' . $numrow, $data['NG_count']);
+			$sheet->setCellValue('H' . $numrow, $data['status']);
+			$sheet->setCellValue('I' . $numrow, $data['performance']);
+			$sheet->setCellValue('J' . $numrow, $data['availability']);
+			$sheet->setCellValue('K' . $numrow, $data['quality']);
+			$sheet->setCellValue('L' . $numrow, $data['run_time']);
+			$sheet->setCellValue('M' . $numrow, $data['down_time']);
+			$sheet->setCellValue('N' . $numrow, $data['delta_down_time']);
+			$sheet->setCellValue('O' . $numrow, $data['pic_name']);
+			$sheet->setCellValue('P' . $numrow, $data['remark']);
+			$sheet->setCellValue('Q' . $numrow, $data['detail']);
+			$sheet->setCellValue('R' . $numrow, $data['pic_name_2']);
+			$sheet->setCellValue('S' . $numrow, $data['remark_2']);
+			$sheet->setCellValue('T' . $numrow, $data['detail_2']);
+			$sheet->setCellValue('U' . $numrow, $data['location']);
 			$sheet->getStyle('A' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('B' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('C' . $numrow)->applyFromArray($style_row);
@@ -147,6 +156,9 @@ class Export_model extends CI_Model
 			$sheet->getStyle('P' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('Q' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('R' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('S' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('T' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('U' . $numrow)->applyFromArray($style_row);
 
 			$numrow++; // Tambah 1 setiap kali looping
 		}
@@ -169,6 +181,9 @@ class Export_model extends CI_Model
 		$sheet->getColumnDimension('P')->setAutoSize(true); // Set width kolom E
 		$sheet->getColumnDimension('Q')->setAutoSize(true); // Set width kolom E
 		$sheet->getColumnDimension('R')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('S')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('T')->setAutoSize(true); // Set width kolom E
+		$sheet->getColumnDimension('U')->setAutoSize(true); // Set width kolom E
 
 		$writer = new Xlsx($spreadsheet);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
