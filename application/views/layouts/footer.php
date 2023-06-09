@@ -259,6 +259,7 @@
 							$("#batch_id_" + data[i].id).html(data[i].batch_id);
 							$("#lot_number_" + data[i].id).html(data[i].lot_number);
 							$("#small_stop_time_" + data[i].id).html(data[i].small_stop_time);
+							$("#standby_time_" + data[i].id).html(data[i].standby_time);
 							$("#target_" + data[i].id).html(data[i].target);
 						}
 					}
