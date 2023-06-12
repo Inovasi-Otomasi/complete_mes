@@ -27,7 +27,7 @@ class Export_model extends CI_Model
 		// $spreadsheet->getSecurity()->setLockWindows(true);
 		// $spreadsheet->getSecurity()->setLockStructure(true);
 		// $spreadsheet->getSecurity()->setWorkbookPassword("adminiot");
-		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('./assets/excel/TemplateReportv1.xlsx', \PhpOffice\PhpSpreadsheet\Reader\IReader::LOAD_WITH_CHARTS);
+		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('./assets/excel/TemplateReportv3.xlsx', \PhpOffice\PhpSpreadsheet\Reader\IReader::LOAD_WITH_CHARTS);
 		// $sheet = $spreadsheet->getActiveSheet();
 		// $spreadsheet->getActiveSheet()->getProtection()->setPassword('adminiot');
 		// $spreadsheet->getActiveSheet()->getProtection()->setSheet(true);
