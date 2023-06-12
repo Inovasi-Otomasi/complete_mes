@@ -5,6 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Nick\SecureSpreadsheet\Encrypt;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Export_model extends CI_Model
 {
@@ -243,7 +244,8 @@ class Export_model extends CI_Model
 		$sheet->getColumnDimension('T')->setAutoSize(true); // Set width kolom E
 		$sheet->getColumnDimension('U')->setAutoSize(true); // Set width kolom E
 
-		$writer = new Xlsx($spreadsheet);
+		// $writer = new Xlsx($spreadsheet);
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 		$writer->setIncludeCharts(true);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
 
