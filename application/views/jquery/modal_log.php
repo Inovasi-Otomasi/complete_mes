@@ -14,6 +14,7 @@
 								<label>PIC Operator</label>
 								<div class="input-group mb-3 row">
 									<select id="pic_name-<?php echo $id; ?>" name="pic_name">
+										<option value="None" <?php if ($pic_name == 'None') echo "selected"; ?> default>None</option>
 										<?php foreach ($pic_list as $pic) : ?>
 											<option value="<?php echo $pic['pic_name']; ?>" <?php if ($pic_name == $pic['pic_name']) echo "selected"; ?>><?php echo $pic['pic_name']; ?></option>
 										<?php endforeach; ?>
@@ -22,6 +23,7 @@
 								<label>Remark Operator</label>
 								<div class="input-group mb-3 row">
 									<select id="remark-<?php echo $id; ?>" name="remark">
+										<option value="None" <?php if ($pic_name == 'None') echo "selected"; ?> default>None</option>
 										<?php foreach ($remark_list as $list) : ?>
 											<?php if ($list['status'] == 'DOWN TIME') : ?>
 												<option value="<?php echo $list['detail']; ?>" <?php if ($remark == $list['detail']) echo "selected"; ?>><?php echo $list['detail']; ?></option>
@@ -29,14 +31,14 @@
 										<?php endforeach; ?>
 									</select>
 								</div>
-
 								<label>Detail Operator</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder="Detail" name="detail" value="<?php echo $detail; ?>" required>
+									<input type="text" class="form-control" placeholder="Detail" name="detail" value="<?php echo $detail; ?>">
 								</div>
 								<label>PIC Engineer</label>
 								<div class="input-group mb-3 row">
 									<select id="pic_name_2-<?php echo $id; ?>" name="pic_name_2">
+										<option value="None" <?php if ($pic_name == 'None') echo "selected"; ?> default>None</option>
 										<?php foreach ($pic_list as $pic) : ?>
 											<option value="<?php echo $pic['pic_name']; ?>" <?php if ($pic_name == $pic['pic_name']) echo "selected"; ?>><?php echo $pic['pic_name']; ?></option>
 										<?php endforeach; ?>
@@ -45,6 +47,7 @@
 								<label>Remark Engineer</label>
 								<div class="input-group mb-3 row">
 									<select id="remark_2-<?php echo $id; ?>" name="remark_2">
+										<option value="None" <?php if ($pic_name == 'None') echo "selected"; ?> default>None</option>
 										<?php foreach ($remark_list as $list) : ?>
 											<?php if ($list['status'] == 'DOWN TIME') : ?>
 												<option value="<?php echo $list['detail']; ?>" <?php if ($remark == $list['detail']) echo "selected"; ?>><?php echo $list['detail']; ?></option>
@@ -60,7 +63,7 @@
 								</script>
 								<label>Detail Engineer</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder="Detail 2" name="detail_2" value="<?php echo $detail_2; ?>" required>
+									<input type="text" class="form-control" placeholder="Detail 2" name="detail_2" value="<?php echo $detail_2; ?>">
 								</div>
 								<div class="text-center">
 									<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
