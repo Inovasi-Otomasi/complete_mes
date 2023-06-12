@@ -64,7 +64,7 @@ class Ajax extends CI_Controller
 					} elseif ($line["start_job"] && !$line["stop_job"]) {
 						$color = 'text-warning';
 					}
-					$line_names .= '<li>' . $line["line_name"] . '&nbsp;<i class="fas fa-circle ' . $color . '"></i></li>';
+					$line_names .= '<li>' . $line["line_name"] . '&nbsp;<i class="fas fa-circle ' . $color . '"></i><br/>P:' . (isset($line["performance"]) ? $line["performance"] : 0) . ', A:' . (isset($line["availability"]) ? $line["availability"] : 0) . ', Q:' . (isset($line["quality"]) ? $line["quality"] : 0) . ', C:' . (isset($line["counter"]) ? $line["counter"] : 0) . '</li><hr/>';
 				}
 				$line_names .= '</ul>';
 				$row = array();
@@ -236,7 +236,11 @@ class Ajax extends CI_Controller
 						'cycle_time' => floatval($this->input->post("cycle_time_" . $id)),
 						'quantity' => floatval($this->input->post("quantity_sku_" . $id)),
 						'start_job' => 0,
-						'stop_job' => 0
+						'stop_job' => 0,
+						'performance' => 0,
+						'availability' => 0,
+						'quality' => 0,
+						'counter' => 0
 					);
 					array_push($line_rules, $chong);
 				}
@@ -287,7 +291,11 @@ class Ajax extends CI_Controller
 						'cycle_time' => floatval($this->input->post("cycle_time_" . $id)),
 						'quantity' => floatval($this->input->post("quantity_sku_" . $id)),
 						'start_job' => 0,
-						'stop_job' => 0
+						'stop_job' => 0,
+						'performance' => 0,
+						'availability' => 0,
+						'quality' => 0,
+						'counter' => 0
 					);
 					array_push($line_rules, $chong);
 				}

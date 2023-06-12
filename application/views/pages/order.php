@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div class="card-body table-responsive">
-				<table id="order_list" class="display text-center" style="width:100%">
+				<table id="order_list" class="display text-center text-nowrap" style="width:100%">
 					<thead>
 						<tr>
 							<th>ID</th>

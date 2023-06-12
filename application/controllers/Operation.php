@@ -136,6 +136,11 @@ class Operation extends CI_Controller
 				);
 				$line_status = $this->line_model->get_line_by_id($this->input->post('line_id'))->status;
 				if ($line_status != "STOP") {
+					$current_line = $this->line_model->get_line_by_id($this->input->post('line_id'));
+					$line_counter = $current_line->item_counter;
+					$line_performance = $current_line->performance;
+					$line_availability = $current_line->availability;
+					$line_quality = $current_line->quality;
 					$result = $this->line_model->change_line_status($arr_query);
 					if ($result > 0) {
 						$single_order = $this->order_model->get_order_by_id($this->input->post('order_id'));
@@ -145,6 +150,10 @@ class Operation extends CI_Controller
 						foreach ($line_rules as $rule) {
 							if ($rule['line_name'] == $line_name) {
 								$rule['stop_job'] = 1;
+								$rule['counter'] = $line_counter;
+								$rule['performance'] = $line_performance;
+								$rule['availability'] = $line_availability;
+								$rule['quality'] = $line_quality;
 							}
 							array_push($new_line_rules, $rule);
 						}

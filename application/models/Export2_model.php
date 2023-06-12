@@ -15,80 +15,17 @@ class Export_model extends CI_Model
 	}
 	public function Export($json_arr)
 	{
-
-		$datetimeexplode = explode(' to ', $json_arr['datetimerange']);
-		// echo $datetimeexplode[0];
-		$datetimestart = $datetimeexplode[0];
-		$datetimeend = $datetimeexplode[1];
-
 		// var_dump($json_arr['sku_code']);
-		// $spreadsheet = new Spreadsheet();
+		$spreadsheet = new Spreadsheet();
 		// $spreadsheet->getSecurity()->setLockWindows(true);
 		// $spreadsheet->getSecurity()->setLockStructure(true);
 		// $spreadsheet->getSecurity()->setWorkbookPassword("adminiot");
-		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('./assets/excel/TemplateReportv1.xlsx', \PhpOffice\PhpSpreadsheet\Reader\IReader::LOAD_WITH_CHARTS);
-		// $sheet = $spreadsheet->getActiveSheet();
+		$sheet = $spreadsheet->getActiveSheet();
 		// $spreadsheet->getActiveSheet()->getProtection()->setPassword('adminiot');
 		// $spreadsheet->getActiveSheet()->getProtection()->setSheet(true);
 		// $spreadsheet->getActiveSheet()->getProtection()->setSort(true);
 		// $spreadsheet->getActiveSheet()->getProtection()->setInsertRows(true);
 		// $spreadsheet->getActiveSheet()->getProtection()->setFormatCells(true);
-		$sheet = $spreadsheet->getSheetByName('Report OEE');
-		$sheet->setCellValue('H5',  $datetimeexplode[0]);
-		$sheet->getColumnDimension('H')->setAutoSize(true);
-		$sheet->setCellValue('I5',  $datetimeexplode[1]);
-		$sheet->getColumnDimension('I')->setAutoSize(true);
-		//input line name
-		$this->db->select('*');
-		if ($json_arr['line_name'] != 'All') {
-			$this->db->where('line_name', $json_arr['line_name']);
-		}
-		if ($json_arr['sku_code'] != 'All') {
-			$this->db->where('sku_code', $json_arr['sku_code']);
-		}
-		$this->db->from('manufacturing_line');
-		$query = $this->db->get();
-		$numrow = 11;
-		foreach ($query->result_array() as $data) {
-			$sheet->setCellValue('B' . $numrow, $data['line_name']);
-			$numrow++;
-		}
-		//input remark setup
-		$this->db->select('*');
-		$this->db->from('remark_list');
-		$this->db->where('status', 'SETUP');
-		$query = $this->db->get();
-		$numrow = 12;
-		foreach ($query->result_array() as $data) {
-			$sheet->setCellValue('N' . $numrow, $data['detail']);
-			$sheet->setCellValue('U' . $numrow, $data['detail']);
-			$numrow++;
-		}
-		//input remark standby
-		$this->db->select('*');
-		$this->db->from('remark_list');
-		$this->db->where('status', 'STANDBY');
-		$query = $this->db->get();
-		$numrow = 12;
-		foreach ($query->result_array() as $data) {
-			$sheet->setCellValue('J' . $numrow, $data['detail']);
-			$sheet->setCellValue('Q' . $numrow, $data['detail']);
-			$numrow++;
-		}
-		//input remark downtime
-		$this->db->select('*');
-		$this->db->from('remark_list');
-		$this->db->where('status', 'DOWN TIME')->or_where('status', 'SMALL STOP');
-		$query = $this->db->get();
-		$numrow = 12;
-		foreach ($query->result_array() as $data) {
-			$sheet->setCellValue('L' . $numrow, $data['detail']);
-			$sheet->setCellValue('S' . $numrow, $data['detail']);
-			$numrow++;
-		}
-
-
-		$sheet = $spreadsheet->getSheetByName('Worksheet');
 
 		$style_col = [
 			'font' => ['bold' => true], // Set font nya jadi bold
@@ -116,10 +53,13 @@ class Export_model extends CI_Model
 			]
 		];
 
-
+		$datetimeexplode = explode(' to ', $json_arr['datetimerange']);
+		// echo $datetimeexplode[0];
+		$datetimestart = $datetimeexplode[0];
+		$datetimeend = $datetimeexplode[1];
 
 		$this->db->select('*');
-		// $this->db->select('avg(performance),avg(availability),avg(quality)');
+
 		// $this->db->select('*');
 		if ($json_arr['line_name'] != 'All') {
 			$this->db->where('line_name', $json_arr['line_name']);
@@ -244,7 +184,6 @@ class Export_model extends CI_Model
 		$sheet->getColumnDimension('U')->setAutoSize(true); // Set width kolom E
 
 		$writer = new Xlsx($spreadsheet);
-		$writer->setIncludeCharts(true);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
 
 		header('Content-Type: application/vnd.ms-excel');
