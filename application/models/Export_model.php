@@ -253,5 +253,6 @@ class Export_model extends CI_Model
 		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
 		header('Cache-Control: max-age=0');
 		$writer->save('php://output'); // download file
+		exit;
 	}
 }
