@@ -79,7 +79,8 @@ class Export_model extends CI_Model
 		//input remark downtime
 		$this->db->select('*');
 		$this->db->from('remark_list');
-		$this->db->where('status', 'DOWN TIME')->or_where('status', 'SMALL STOP');
+		// $this->db->where('status', 'DOWN TIME')->or_where('status', 'SMALL STOP');
+		$this->db->where('status', 'DOWN TIME');
 		$query = $this->db->get();
 		$numrow = 12;
 		foreach ($query->result_array() as $data) {
