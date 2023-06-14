@@ -161,7 +161,7 @@ class Operation extends CI_Controller
 						$mapped_rules = array_map(function ($rule) {
 							return $rule['stop_job'];
 						}, $new_line_rules);
-						$progress = number_format(array_count_values($mapped_rules)['1'] * 100 / sizeof($mapped_rules), 2);
+						$progress = number_format(array_count_values($mapped_rules)['1'] ?: 0 * 100 / sizeof($mapped_rules), 2);
 						$arr_query1 = array();
 						if (!in_array(0, $mapped_rules)) {
 							//full completed
@@ -336,7 +336,7 @@ class Operation extends CI_Controller
 						$mapped_rules = array_map(function ($rule) {
 							return $rule['stop_job'];
 						}, $new_line_rules);
-						$progress = number_format(array_count_values($mapped_rules)['1'] * 100 / sizeof($mapped_rules), 2);
+						$progress = number_format(array_count_values($mapped_rules)['1'] ?: 0 * 100 / sizeof($mapped_rules), 2);
 						$arr_query1 = array();
 						if (!in_array(0, $mapped_rules)) {
 							//full completed
