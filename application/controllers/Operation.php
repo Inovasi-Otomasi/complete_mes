@@ -307,54 +307,56 @@ class Operation extends CI_Controller
 				$this->session->set_flashdata("success", "All line's job stopped");
 				$data['lines'] = $this->line_model->get_line_info();
 				foreach ($data['lines'] as $line) {
-					$arr_query = array(
-						'id' => $line['id'],
-						'status' => 'STOP'
-					);
-					$current_line = $this->line_model->get_line_by_id($line['id']);
-					$line_counter = $current_line->item_counter;
-					$line_performance = $current_line->performance;
-					$line_availability = $current_line->availability;
-					$line_quality = $current_line->quality;
-					$single_order = $this->order_model->get_order_by_id($line['order_id']);
-					$line_name = $this->line_model->get_line_by_id($line['id'])->line_name;
-					$line_rules = json_decode($single_order ? $single_order->line_rules : '{}', true) ?: array();
-					// $line_rules = json_decode($this->order_model->get_order_by_id($line['order_id'])->line_rules ?: (object)array(), true) ?: array();
-					$result = $this->line_model->change_line_status($arr_query);
-					if ($result > 0) {
-						$new_line_rules = array();
-						foreach ($line_rules as $rule) {
-							if ($rule['line_name'] == $line_name) {
-								$rule['stop_job'] = 1;
-								$rule['counter'] = $line_counter;
-								$rule['performance'] = $line_performance;
-								$rule['availability'] = $line_availability;
-								$rule['quality'] = $line_quality;
+					if ($line->status != "STOP") {
+						$arr_query = array(
+							'id' => $line['id'],
+							'status' => 'STOP'
+						);
+						$current_line = $this->line_model->get_line_by_id($line['id']);
+						$line_counter = $current_line->item_counter;
+						$line_performance = $current_line->performance;
+						$line_availability = $current_line->availability;
+						$line_quality = $current_line->quality;
+						$single_order = $this->order_model->get_order_by_id($line['order_id']);
+						$line_name = $this->line_model->get_line_by_id($line['id'])->line_name;
+						$line_rules = json_decode($single_order ? $single_order->line_rules : '{}', true) ?: array();
+						// $line_rules = json_decode($this->order_model->get_order_by_id($line['order_id'])->line_rules ?: (object)array(), true) ?: array();
+						$result = $this->line_model->change_line_status($arr_query);
+						if ($result > 0) {
+							$new_line_rules = array();
+							foreach ($line_rules as $rule) {
+								if ($rule['line_name'] == $line_name) {
+									$rule['stop_job'] = 1;
+									$rule['counter'] = $line_counter;
+									$rule['performance'] = $line_performance;
+									$rule['availability'] = $line_availability;
+									$rule['quality'] = $line_quality;
+								}
+								array_push($new_line_rules, $rule);
 							}
-							array_push($new_line_rules, $rule);
+							$mapped_rules = array_map(function ($rule) {
+								return $rule['stop_job'];
+							}, $new_line_rules);
+							$progress = number_format(array_count_values($mapped_rules)['1'] ?: 0 * 100 / sizeof($mapped_rules), 2);
+							$arr_query1 = array();
+							if (!in_array(0, $mapped_rules)) {
+								//full completed
+								$arr_query1 = array(
+									'order_id' => $line['order_id'],
+									'status' => 'Completed',
+									'line_rules' => json_encode($new_line_rules),
+									'progress' => $progress
+								);
+							} else {
+								$arr_query1 = array(
+									'order_id' => $line['order_id'],
+									'status' => 'Partial Complete',
+									'line_rules' => json_encode($new_line_rules),
+									'progress' => $progress
+								);
+							}
+							$result1 = $this->order_model->change_order_status($arr_query1);
 						}
-						$mapped_rules = array_map(function ($rule) {
-							return $rule['stop_job'];
-						}, $new_line_rules);
-						$progress = number_format(array_count_values($mapped_rules)['1'] ?: 0 * 100 / sizeof($mapped_rules), 2);
-						$arr_query1 = array();
-						if (!in_array(0, $mapped_rules)) {
-							//full completed
-							$arr_query1 = array(
-								'order_id' => $line['order_id'],
-								'status' => 'Completed',
-								'line_rules' => json_encode($new_line_rules),
-								'progress' => $progress
-							);
-						} else {
-							$arr_query1 = array(
-								'order_id' => $line['order_id'],
-								'status' => 'Partial Complete',
-								'line_rules' => json_encode($new_line_rules),
-								'progress' => $progress
-							);
-						}
-						$result1 = $this->order_model->change_order_status($arr_query1);
 					}
 				}
 				redirect(base_url() . 'pages/dashboard');
