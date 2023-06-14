@@ -311,7 +311,7 @@ class Operation extends CI_Controller
 						'id' => $line['id'],
 						'status' => 'STOP'
 					);
-					$current_line = $this->line_model->get_line_by_id($this->input->post('line_id'));
+					$current_line = $this->line_model->get_line_by_id($line['id']);
 					$line_counter = $current_line->item_counter;
 					$line_performance = $current_line->performance;
 					$line_availability = $current_line->availability;
