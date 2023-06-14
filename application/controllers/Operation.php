@@ -141,9 +141,9 @@ class Operation extends CI_Controller
 					$line_performance = $current_line->performance;
 					$line_availability = $current_line->availability;
 					$line_quality = $current_line->quality;
-					// $single_order = $this->order_model->get_order_by_id($this->input->post('order_id'));
+					$single_order = $this->order_model->get_order_by_id($this->input->post('order_id'));
 					$line_name = $this->line_model->get_line_by_id($this->input->post('line_id'))->line_name;
-					$line_rules = json_decode($this->order_model->get_order_by_id($this->input->post('order_id'))->line_rules, true) ?: array();
+					$line_rules = json_decode($single_order ? $single_order->line_rules : (object)array(), true) ?: array();
 					$result = $this->line_model->change_line_status($arr_query);
 					if ($result > 0) {
 
@@ -311,9 +311,10 @@ class Operation extends CI_Controller
 						'id' => $line['id'],
 						'status' => 'STOP'
 					);
-					// $single_order = $this->order_model->get_order_by_id($line['order_id']);
+					$single_order = $this->order_model->get_order_by_id($line['order_id']);
 					$line_name = $this->line_model->get_line_by_id($line['id'])->line_name;
-					$line_rules = json_decode($this->order_model->get_order_by_id($line['order_id'])->line_rules, true) ?: array();
+					$line_rules = json_decode($single_order ? $single_order->line_rules : (object)array(), true) ?: array();
+					// $line_rules = json_decode($this->order_model->get_order_by_id($line['order_id'])->line_rules ?: (object)array(), true) ?: array();
 					$result = $this->line_model->change_line_status($arr_query);
 					if ($result > 0) {
 						$new_line_rules = array();
