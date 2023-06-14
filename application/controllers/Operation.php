@@ -143,7 +143,7 @@ class Operation extends CI_Controller
 					$line_quality = $current_line->quality;
 					$single_order = $this->order_model->get_order_by_id($this->input->post('order_id'));
 					$line_name = $this->line_model->get_line_by_id($this->input->post('line_id'))->line_name;
-					$line_rules = json_decode($single_order ? $single_order->line_rules : '{}', true) ?: array();
+					$line_rules = json_decode($single_order->line_rules, true) ?: array();
 					$result = $this->line_model->change_line_status($arr_query);
 					if ($result > 0) {
 
@@ -161,7 +161,7 @@ class Operation extends CI_Controller
 						$mapped_rules = array_map(function ($rule) {
 							return $rule['stop_job'];
 						}, $new_line_rules);
-						$progress = number_format(array_count_values($mapped_rules)['1'] ?: 0 * 100 / sizeof($mapped_rules), 2);
+						$progress = number_format(array_count_values($mapped_rules)['1'] * 100 / sizeof($mapped_rules), 2);
 						$arr_query1 = array();
 						if (!in_array(0, $mapped_rules)) {
 							//full completed
@@ -319,7 +319,7 @@ class Operation extends CI_Controller
 						$line_quality = $current_line->quality;
 						$single_order = $this->order_model->get_order_by_id($line['order_id']);
 						$line_name = $this->line_model->get_line_by_id($line['id'])->line_name;
-						$line_rules = json_decode($single_order ? $single_order->line_rules : '{}', true) ?: array();
+						$line_rules = json_decode($single_order->line_rules, true) ?: array();
 						// $line_rules = json_decode($this->order_model->get_order_by_id($line['order_id'])->line_rules ?: (object)array(), true) ?: array();
 						$result = $this->line_model->change_line_status($arr_query);
 						if ($result > 0) {
@@ -337,7 +337,7 @@ class Operation extends CI_Controller
 							$mapped_rules = array_map(function ($rule) {
 								return $rule['stop_job'];
 							}, $new_line_rules);
-							$progress = number_format(array_count_values($mapped_rules)['1'] ?: 0 * 100 / sizeof($mapped_rules), 2);
+							$progress = number_format(array_count_values($mapped_rules)['1'] * 100 / sizeof($mapped_rules), 2);
 							$arr_query1 = array();
 							if (!in_array(0, $mapped_rules)) {
 								//full completed
