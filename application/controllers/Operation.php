@@ -307,7 +307,7 @@ class Operation extends CI_Controller
 				$this->session->set_flashdata("success", "All line's job stopped");
 				$data['lines'] = $this->line_model->get_line_info();
 				foreach ($data['lines'] as $line) {
-					if ($line->status != "STOP") {
+					if ($line['status'] != "STOP") {
 						$arr_query = array(
 							'id' => $line['id'],
 							'status' => 'STOP'
