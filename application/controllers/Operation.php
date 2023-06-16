@@ -81,7 +81,8 @@ class Operation extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
-				if ($this->input->post('order_id') != 0 && $this->input->post('prev_status') == 'STOP') {
+				$status_line = $this->line_model->get_line_status($this->input->post('line_id'));
+				if ($this->input->post('order_id') != 0 && $status_line == 'STOP' && $status_line != 'BREAKDOWN') {
 					$arr_query = array(
 						'id' => $this->input->post('line_id'),
 						'status' => 'SETUP'
@@ -135,7 +136,7 @@ class Operation extends CI_Controller
 					'status' => 'STOP'
 				);
 				$line_status = $this->line_model->get_line_by_id($this->input->post('line_id'))->status;
-				if ($line_status != "STOP") {
+				if ($line_status != "STOP"  && $line_status != 'BREAKDOWN') {
 					$current_line = $this->line_model->get_line_by_id($this->input->post('line_id'));
 					$line_counter = $current_line->item_counter;
 					$line_performance = $current_line->performance;
@@ -204,7 +205,8 @@ class Operation extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
-				if ($this->input->post('prev_status') != 'STOP') {
+				$status_line = $this->line_model->get_line_status($this->input->post('line_id'));
+				if ($status_line != 'STOP' && $status_line != 'BREAKDOWN') {
 					$remark_id = $this->input->post('remark_id');
 					$arr_query = array(
 						'id' => $this->input->post('line_id'),
@@ -230,21 +232,20 @@ class Operation extends CI_Controller
 			}
 		}
 	}
-	public function breakdown_operation()
+	public function breakdown_state()
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
-				if ($this->input->post('prev_status') != 'STOP' && $this->input->post('prev_status') != 'DOWN TIME') {
+				$line_status = $this->line_model->get_line_by_id($this->input->post('line_id'))->status;
+				if ($line_status == 'STOP') {
 					$arr_query = array(
 						'id' => $this->input->post('line_id'),
-						'status' => 'DOWN TIME',
-						'order_id' => $this->input->post('order_id'),
-						'cycle_time' => $this->line_model->get_line_by_id($this->input->post('line_id'))->cycle_time, //time from db,
+						'status' => 'BREAKDOWN',
 					);
 					$result = $this->line_model->change_line_status($arr_query);
 					if ($result > 0) {
 						$current_line = $this->line_model->get_line_by_id($arr_query['id']);
-						$this->event_model->add_event(array("event" => "Line " . $current_line->line_name . "'s job on breakdown."));
+						$this->event_model->add_event(array("event" => "Line " . $current_line->line_name . " on breakdown."));
 						$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
 						redirect(base_url() . 'pages/dashboard');
 					} else {
@@ -252,7 +253,34 @@ class Operation extends CI_Controller
 						redirect(base_url() . 'pages/dashboard');
 					}
 				} else {
-					$this->session->set_flashdata("failed", "Line must be running");
+					$this->session->set_flashdata("failed", "Line must be stopped");
+					redirect(base_url() . 'pages/dashboard');
+				}
+			}
+		}
+	}
+	public function lift_breakdown()
+	{
+		if ($this->session->userdata('username') != '') {
+			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
+				$line_status = $this->line_model->get_line_by_id($this->input->post('line_id'))->status;
+				if ($line_status == 'BREAKDOWN') {
+					$arr_query = array(
+						'id' => $this->input->post('line_id'),
+						'status' => 'STOP',
+					);
+					$result = $this->line_model->change_line_status($arr_query);
+					if ($result > 0) {
+						$current_line = $this->line_model->get_line_by_id($arr_query['id']);
+						$this->event_model->add_event(array("event" => "Line " . $current_line->line_name . "'breakdown state lifted."));
+						$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
+						redirect(base_url() . 'pages/dashboard');
+					} else {
+						$this->session->set_flashdata("failed", "Edit Line " . $arr_query['id'] . " Failed");
+						redirect(base_url() . 'pages/dashboard');
+					}
+				} else {
+					$this->session->set_flashdata("failed", "Line must be on breakdown");
 					redirect(base_url() . 'pages/dashboard');
 				}
 			}
@@ -266,7 +294,7 @@ class Operation extends CI_Controller
 				$this->session->set_flashdata("success", "All line's job started");
 				$data['lines'] = $this->line_model->get_line_info();
 				foreach ($data['lines'] as $line) {
-					if ($line['order_id'] != 0 && $line['status'] == 'STOP') {
+					if ($line['order_id'] != 0 && $line['status'] == 'STOP' && $line['status'] != 'BREAKDOWN') {
 						$arr_query = array(
 							'id' => $line['id'],
 							'status' => 'SETUP'
@@ -307,7 +335,7 @@ class Operation extends CI_Controller
 				$this->session->set_flashdata("success", "All line's job stopped");
 				$data['lines'] = $this->line_model->get_line_info();
 				foreach ($data['lines'] as $line) {
-					if ($line['status'] != "STOP") {
+					if ($line['status'] != "STOP" && $line['status'] != 'BREAKDOWN') {
 						$arr_query = array(
 							'id' => $line['id'],
 							'status' => 'STOP'
@@ -367,18 +395,24 @@ class Operation extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
-				$arr_query = array(
-					'id' => $this->input->post('line_id'),
-					'NG_count' => $this->input->post('ng_count')
-				);
-				$result = $this->line_model->edit_ng($arr_query);
-				if ($result > 0) {
-					$current_line = $this->line_model->get_line_by_id($arr_query['id']);
-					$this->event_model->add_event(array("event" => "NG count for line " . $current_line->line_name . " has been changed. [" . $arr_query['NG_count'] . "]"));
-					$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
-					redirect(base_url() . 'pages/dashboard');
+				$status_line = $this->line_model->get_line_status($this->input->post('line_id'));
+				if ($status_line != 'STOP' && $status_line != 'BREAKDOWN') {
+					$arr_query = array(
+						'id' => $this->input->post('line_id'),
+						'NG_count' => $this->input->post('ng_count')
+					);
+					$result = $this->line_model->edit_ng($arr_query);
+					if ($result > 0) {
+						$current_line = $this->line_model->get_line_by_id($arr_query['id']);
+						$this->event_model->add_event(array("event" => "NG count for line " . $current_line->line_name . " has been changed. [" . $arr_query['NG_count'] . "]"));
+						$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
+						redirect(base_url() . 'pages/dashboard');
+					} else {
+						$this->session->set_flashdata("failed", "Edit Line " . $arr_query['id'] . " Failed");
+						redirect(base_url() . 'pages/dashboard');
+					}
 				} else {
-					$this->session->set_flashdata("failed", "Edit Line " . $arr_query['id'] . " Failed");
+					$this->session->set_flashdata("failed", "Line must be running");
 					redirect(base_url() . 'pages/dashboard');
 				}
 			}
@@ -389,18 +423,24 @@ class Operation extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'view_dashboard'], $this->session->userdata('privileges'))) {
-				$arr_query = array(
-					'id' => $this->input->post('line_id'),
-					'additional' => $this->input->post('additional')
-				);
-				$result = $this->line_model->edit_additional($arr_query);
-				if ($result > 0) {
-					$current_line = $this->line_model->get_line_by_id($arr_query['id']);
-					$this->event_model->add_event(array("event" => "Additional count for line " . $current_line->line_name . " has been changed. [" . $arr_query['additional'] . "]"));
-					$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
-					redirect(base_url() . 'pages/dashboard');
+				$status_line = $this->line_model->get_line_status($this->input->post('line_id'));
+				if ($status_line != 'STOP' && $status_line != 'BREAKDOWN') {
+					$arr_query = array(
+						'id' => $this->input->post('line_id'),
+						'additional' => $this->input->post('additional')
+					);
+					$result = $this->line_model->edit_additional($arr_query);
+					if ($result > 0) {
+						$current_line = $this->line_model->get_line_by_id($arr_query['id']);
+						$this->event_model->add_event(array("event" => "Additional count for line " . $current_line->line_name . " has been changed. [" . $arr_query['additional'] . "]"));
+						$this->session->set_flashdata("success", "Edit Line " . $arr_query['id'] . " Success");
+						redirect(base_url() . 'pages/dashboard');
+					} else {
+						$this->session->set_flashdata("failed", "Edit Line " . $arr_query['id'] . " Failed");
+						redirect(base_url() . 'pages/dashboard');
+					}
 				} else {
-					$this->session->set_flashdata("failed", "Edit Line " . $arr_query['id'] . " Failed");
+					$this->session->set_flashdata("failed", "Line must be running");
 					redirect(base_url() . 'pages/dashboard');
 				}
 			}

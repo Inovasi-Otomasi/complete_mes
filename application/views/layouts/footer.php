@@ -9,7 +9,7 @@
 			<div class="col-lg-6">
 				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
 					<li class="nav-item">
-						Version : 20230613-GPL
+						Version : 20230616-GPL
 					</li>
 				</ul>
 			</div>
@@ -275,6 +275,8 @@
 							if (data[i].sku_code == 'None') {
 								let sku_none = `<span class="text-danger">${data[i].sku_code}</span>`;
 								$("#sku_" + data[i].id).html(sku_none);
+								let setup_none = `<span class="text-danger">Check Setup</span>`;
+								$("#check_setup_" + data[i].id).html(setup_none);
 							} else {
 								$("#sku_" + data[i].id).html(data[i].sku_code);
 							}
@@ -290,6 +292,7 @@
 							} else {
 								$("#lot_number_" + data[i].id).html(data[i].lot_number);
 							}
+
 
 							$("#setup_time_" + data[i].id).html(data[i].setup_time);
 							$("#cycle_time_" + data[i].id).html(data[i].cycle_time);

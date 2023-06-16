@@ -511,6 +511,7 @@
 											</div>
 										</div>
 										<div class="col-lg-5">
+											<h5 id='check_setup_<?php echo $line['id']; ?>'></h5>
 											<div class="row">
 												<p class="col-5 text-xl my-0 py-0">Status</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
@@ -581,6 +582,14 @@
 												<p class="col-5 text-xl my-0 py-0">Item Counter</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
 												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='item_counter_<?php echo $line['id']; ?>'></span> pcs</p>
+											</div>
+											<hr class="my-1 py-0">
+											<div class="row">
+												<p class="col-5 text-xl my-0 py-0">NG Product</p>
+												<p class="col-2 text-xl my-0 py-0">:</p>
+												<p class="col-5 text-xl my-0 py-0">
+													<span class="text-dark font-weight-bold ms-sm-2" id='NG_<?php echo $line['id']; ?>'></span> pcs
+												</p>
 											</div>
 										</div>
 										<div class="col-lg-3 mb-3 mt-3">
@@ -703,19 +712,51 @@
 													</div>
 												</div>
 											</div>
-											<div class="row mt-5">
+											<!-- <div class="row mt-5">
 												<p class="col-5 text-xl">NG Product</p>
 												<p class="col-2 text-xl">:</p>
 												<p class="col-5 text-xl">
 													<span class="text-dark font-weight-bold" id='NG_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span> pcs
 												</p>
-											</div>
-											<div class="text-center">
+											</div> -->
+											<!-- <div class="text-center">
 												<div class="btn-group me-1 w-100">
 													<button type="button" class="btn btn-primary" class="" onclick="double_minus_ng(<?php echo $line['id']; ?>)">&lt;&lt;</button>
 													<button type="button" class="btn btn-primary" onclick="minus_ng(<?php echo $line['id']; ?>)" class="me-2"><i class="fas fa-minus"></i></button>
 													<button type="button" class="btn btn-primary" onclick="plus_ng(<?php echo $line['id']; ?>)" class="ms-2"><i class="fas fa-plus"></i></button>
 													<button type="button" class="btn btn-primary" onclick="double_plus_ng(<?php echo $line['id']; ?>)">&gt;&gt;</button>
+												</div>
+											</div> -->
+
+											<button type="button" class="btn bg-default me-1 w-100 text-white" data-bs-toggle="modal" data-bs-target="#modal-form-breakdown-<?php echo $line['id']; ?>"><i class="fas fa-angle-double-down" aria-hidden="true"></i>&nbsp;&nbsp;Machine Breakdown</button>
+											<div class="modal text-start fade" id="modal-form-breakdown-<?php echo $line['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal-form-edit-1" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+													<div class="modal-content">
+														<div class="modal-body p-0">
+															<div class="card card-plain">
+																<div class="card-header pb-0 text-left">
+																	<h3 class="font-weight-bolder text-info text-gradient">Machine Breakdown</h3>
+																</div>
+																<div class="card-body">
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/breakdown_state">
+																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
+																		<div class="text-center">
+																			<button type="submit" class="btn bg-gradient-primary" value="Submit">BREAKDOWN STATE</button>
+
+																		</div>
+																	</form>
+																	<form role="form" method="post" action="<?php echo base_url(); ?>operation/lift_breakdown">
+																		<input type="hidden" name="line_id" value="<?php echo $line['id']; ?>">
+																		<input type="hidden" name="order_id" value="<?php echo $line['order_id']; ?>">
+																		<div class="text-center">
+																			<button type="submit" class="btn bg-gradient-success" value="Submit">LIFT BREAKDOWN STATE</button>
+																		</div>
+																		<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 

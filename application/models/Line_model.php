@@ -66,8 +66,6 @@ class Line_model extends CI_Model
 			$this->db->set('acc_standby_time', 0);
 			$this->db->set('acc_setup_time', 0);
 			$this->db->set('additional', 0);
-		} elseif ($data['status'] == 'BREAKDOWN') {
-			$this->db->set('temp_time', $data['cycle_time']);
 		}
 		$this->db->where('id', $data['id']);
 		$this->db->update('manufacturing_line');
