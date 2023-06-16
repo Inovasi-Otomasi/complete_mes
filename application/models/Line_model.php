@@ -39,7 +39,7 @@ class Line_model extends CI_Model
 		if ($data['status'] == 'STANDBY') {
 			$this->db->set('standby_time', $data['standby_time']);
 			$this->db->set('remark', $data['remark']);
-		} elseif ($data['status'] == 'STOP') {
+		} elseif ($data['status'] == 'STOP' || $data['status'] == 'BREAKDOWN') {
 			$this->db->set('sku_code', 'None');
 			$this->db->set('small_stop_detail', '');
 			$this->db->set('small_stop_time', 0);
@@ -56,7 +56,7 @@ class Line_model extends CI_Model
 			$this->db->set('prev_item_counter', 0);
 			$this->db->set('NG_count', 0);
 			$this->db->set('target', 0);
-			$this->db->set('status', 'STOP');
+			$this->db->set('status', $data['status']);
 			$this->db->set('standby_time', 0);
 			$this->db->set('performance', 0);
 			$this->db->set('availability', 0);
