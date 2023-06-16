@@ -19,7 +19,7 @@ class Log_model extends CI_Model
 		// $this->db->select('machine_info.*,station_info.name as station_name');
 		$this->db->select('*');
 		$this->db->where('status !=prev_status');
-		$this->db->where('(status = "DOWN TIME" or status = "SMALL STOP")');
+		$this->db->where('(status = "DOWN TIME" or status = "SMALL STOP" or status = "BREAKDOWN")');
 		// $this->db->from('(SELECT *,(LAG(status, 1) OVER (PARTITION BY line_name ORDER BY timestamp)) as prev_status FROM log_oee) as t');
 		$this->db->from($this->table);
 		// select * from (SELECT *,(LAG(status, 1) OVER (
