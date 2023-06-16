@@ -9,6 +9,12 @@
 							<h3 class="font-weight-bolder text-info text-gradient">Edit Log</h3>
 						</div>
 						<div class="card-body text-start">
+							<div class=" text-center">
+								<h4 class="text-gradient text-danger">Batch Number: <?php echo $batch_id ?></h4>
+								<p class="my-0">Status: <?php echo $status; ?></p>
+								<p class="my-0">Delta Downtime: <?php echo $delta_down_time; ?> detik</p>
+								<p class="my-0">Timestamp: <?php echo $timestamp; ?></p>
+							</div>
 							<form role="form" method="post" action="<?php echo base_url(); ?>ajax/edit_log">
 								<input type="hidden" name="id" value="<?php echo $id; ?>" />
 								<label>PIC Operator</label>

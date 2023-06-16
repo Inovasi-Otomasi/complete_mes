@@ -202,6 +202,15 @@
 							} else if (data[i].performance <= 50) {
 								$("#performance_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
 							}
+							$("#performance_24h_" + data[i].id).html(data[i].performance_24h);
+							$("#performance_24h_bar_" + data[i].id).css("width", data[i].performance_24h + "%");
+							if (data[i].performance_24h >= 80) {
+								$("#performance_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-gradient-danger").addClass("bg-success");
+							} else if (data[i].performance_24h < 80 && data[i].performance_24h > 50) {
+								$("#performance_24h_bar_" + data[i].id).removeClass("bg-gradient-danger").removeClass("bg-success").addClass("bg-gradient-warning");
+							} else if (data[i].performance_24h <= 50) {
+								$("#performance_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
+							}
 							$("#availability_" + data[i].id).html(data[i].availability);
 							$("#availability_bar_" + data[i].id).css("width", data[i].availability + "%");
 							if (data[i].availability >= 80) {
@@ -211,6 +220,15 @@
 							} else if (data[i].availability <= 50) {
 								$("#availability_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
 							}
+							$("#availability_24h_" + data[i].id).html(data[i].availability_24h);
+							$("#availability_24h_bar_" + data[i].id).css("width", data[i].availability_24h + "%");
+							if (data[i].availability_24h >= 80) {
+								$("#availability_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-gradient-danger").addClass("bg-success");
+							} else if (data[i].availability_24h < 80 && data[i].availability_24h > 50) {
+								$("#availability_24h_bar_" + data[i].id).removeClass("bg-gradient-danger").removeClass("bg-success").addClass("bg-gradient-warning");
+							} else if (data[i].availability_24h <= 50) {
+								$("#availability_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
+							}
 							$("#quality_" + data[i].id).html(data[i].quality);
 							$("#quality_bar_" + data[i].id).css("width", data[i].quality + "%");
 							if (data[i].quality >= 80) {
@@ -219,6 +237,15 @@
 								$("#quality_bar_" + data[i].id).removeClass("bg-gradient-danger").removeClass("bg-success").addClass("bg-gradient-warning");
 							} else if (data[i].quality <= 50) {
 								$("#quality_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
+							}
+							$("#quality_24h_" + data[i].id).html(data[i].quality_24h);
+							$("#quality_24h_bar_" + data[i].id).css("width", data[i].quality_24h + "%");
+							if (data[i].quality_24h >= 80) {
+								$("#quality_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-gradient-danger").addClass("bg-success");
+							} else if (data[i].quality_24h < 80 && data[i].quality_24h > 50) {
+								$("#quality_24h_bar_" + data[i].id).removeClass("bg-gradient-danger").removeClass("bg-success").addClass("bg-gradient-warning");
+							} else if (data[i].quality <= 50) {
+								$("#quality_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
 							}
 							$("#progress_" + data[i].id).html(data[i].progress);
 							$("#progress_bar_" + data[i].id).css("width", data[i].progress + "%");
@@ -245,7 +272,25 @@
 								percent: data[i].progress,
 								text: parseInt(data[i].progress).toFixed(1)
 							});
-							$("#sku_" + data[i].id).html(data[i].sku_code);
+							if (data[i].sku_code == 'None') {
+								let sku_none = `<span class="text-danger">${data[i].sku_code}</span>`;
+								$("#sku_" + data[i].id).html(sku_none);
+							} else {
+								$("#sku_" + data[i].id).html(data[i].sku_code);
+							}
+							if (data[i].batch_id == 0) {
+								let batch_id_none = `<span class="text-danger">${data[i].batch_id}</span>`;
+								$("#batch_id_" + data[i].id).html(batch_id_none);
+							} else {
+								$("#batch_id_" + data[i].id).html(data[i].batch_id);
+							}
+							if (data[i].lot_number == 0) {
+								let lot_number_none = `<span class="text-danger">${data[i].lot_number}</span>`;
+								$("#lot_number_" + data[i].id).html(lot_number_none);
+							} else {
+								$("#lot_number_" + data[i].id).html(data[i].lot_number);
+							}
+
 							$("#setup_time_" + data[i].id).html(data[i].setup_time);
 							$("#cycle_time_" + data[i].id).html(data[i].cycle_time);
 							$("#run_time_" + data[i].id).html(data[i].run_time);
@@ -256,8 +301,8 @@
 							// $("#ng_count_form_" + data[i].id).val(data[i].NG_count);
 							$("#status_" + data[i].id).html(data[i].status);
 							$("#order_id_" + data[i].id).html(data[i].order_id);
-							$("#batch_id_" + data[i].id).html(data[i].batch_id);
-							$("#lot_number_" + data[i].id).html(data[i].lot_number);
+
+							// $("#lot_number_" + data[i].id).html(data[i].lot_number);
 							$("#small_stop_time_" + data[i].id).html(data[i].small_stop_time);
 							$("#standby_time_" + data[i].id).html(data[i].standby_time);
 							$("#target_" + data[i].id).html(data[i].target);

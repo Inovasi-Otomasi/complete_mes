@@ -114,25 +114,6 @@
 													<div class=" input-group mb-3">
 														<input class="form-control" type="text" placeholder="Line Name" id="line_name" name='line_name' required>
 													</div>
-													<!-- <label>Rules</label>
-                                                    <div class="container row mb-3">
-                                                        <div class="form-check col-md-4">
-                                                            <input class="form-check-input" name="rule[]" type="checkbox" value="performance" id="rule1">
-                                                            <label class="custom-control-label" for="rule1">Performance</label>
-                                                        </div>
-                                                        <div class="form-check col-md-4">
-                                                            <input class="form-check-input" name="rule[]" type="checkbox" value="availability" id="rule2">
-                                                            <label class="custom-control-label" for="rule2">Availability</label>
-                                                        </div>
-                                                        <div class="form-check col-md-4">
-                                                            <input class="form-check-input" name="rule[]" type="checkbox" value="quality" id="rule3">
-                                                            <label class="custom-control-label" for="rule3">Quality</label>
-                                                        </div>
-                                                        <div class="form-check col-md-4">
-                                                            <input class="form-check-input" name="rule[]" type="checkbox" value="progress" id="rule4">
-                                                            <label class="custom-control-label" for="rule4">Progress</label>
-                                                        </div>
-                                                    </div> -->
 													<div class="text-center">
 														<button type="submit" class="btn bg-gradient-primary" value="Submit">Submit</button>
 														<button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -366,21 +347,23 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-lg-4">
-											<div class="card mb-3">
-												<div class="card-body p-3">
-													<div class="row">
-														<div class="col-12">
-															<div class="numbers">
-																<p class="text-sm mb-0 text-uppercase font-weight-bold">Performance</p>
-																<div class="progress-wrapper">
-																	<div class="progress-info">
-																		<div class="progress-percentage">
-																			<span class="text-sm font-weight-bold" id="performance_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+										<div class="col-lg-4 row">
+											<div class="col-lg-6">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Performance</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="performance_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="progress">
-																		<div class="progress-bar" id="performance_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		<div class="progress">
+																			<div class="progress-bar" id="performance_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -388,20 +371,22 @@
 													</div>
 												</div>
 											</div>
-											<div class="card mb-3">
-												<div class="card-body p-3">
-													<div class="row">
-														<div class="col-12">
-															<div class="numbers">
-																<p class="text-sm mb-0 text-uppercase font-weight-bold">Availability</p>
-																<div class="progress-wrapper">
-																	<div class="progress-info">
-																		<div class="progress-percentage">
-																			<span class="text-sm font-weight-bold" id="availability_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+											<div class="col-lg-6">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Performance 24H</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="performance_24h_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="progress">
-																		<div class="progress-bar" id="availability_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		<div class="progress">
+																			<div class="progress-bar" id="performance_24h_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -409,20 +394,22 @@
 													</div>
 												</div>
 											</div>
-											<div class="card mb-3">
-												<div class="card-body p-3">
-													<div class="row">
-														<div class="col-12">
-															<div class="numbers">
-																<p class="text-sm mb-0 text-uppercase font-weight-bold">Quality</p>
-																<div class="progress-wrapper">
-																	<div class="progress-info">
-																		<div class="progress-percentage">
-																			<span class="text-sm font-weight-bold" id="quality_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+											<div class="col-lg-6">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Availability</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="availability_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="progress">
-																		<div class="progress-bar" id="quality_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		<div class="progress">
+																			<div class="progress-bar" id="availability_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -430,20 +417,91 @@
 													</div>
 												</div>
 											</div>
-											<div class="card mb-3">
-												<div class="card-body p-3">
-													<div class="row">
-														<div class="col-12">
-															<div class="numbers">
-																<p class="text-sm mb-0 text-uppercase font-weight-bold">Progress</p>
-																<div class="progress-wrapper">
-																	<div class="progress-info">
-																		<div class="progress-percentage">
-																			<span class="text-sm font-weight-bold" id="progress_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+											<div class="col-lg-6">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Availability 24H</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="availability_24h_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
+																		</div>
+																		<div class="progress">
+																			<div class="progress-bar" id="availability_24h_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
 																		</div>
 																	</div>
-																	<div class="progress">
-																		<div class="progress-bar" id="progress_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Quality</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="quality_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
+																		</div>
+																		<div class="progress">
+																			<div class="progress-bar" id="quality_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Quality 24H</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="quality_24h_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
+																		</div>
+																		<div class="progress">
+																			<div class="progress-bar" id="quality_24h_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="card mb-3">
+													<div class="card-body p-3">
+														<div class="row">
+															<div class="col-12">
+																<div class="numbers">
+																	<p class="text-sm mb-0 text-uppercase font-weight-bold">Progress</p>
+																	<div class="progress-wrapper">
+																		<div class="progress-info">
+																			<div class="progress-percentage">
+																				<span class="text-sm font-weight-bold" id="progress_<?php echo $line['id']; ?>"></span><span class="text-sm font-weight-bold"> %</span>
+																			</div>
+																		</div>
+																		<div class="progress">
+																			<div class="progress-bar" id="progress_bar_<?php echo $line['id']; ?>" role="progressbar"></div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -524,19 +582,6 @@
 												<p class="col-2 text-xl my-0 py-0">:</p>
 												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='item_counter_<?php echo $line['id']; ?>'></span> pcs</p>
 											</div>
-
-											<!-- <div class="row">
-												<p class="col-5 text-xl">NG Product</p>
-												<p class="col-2 text-xl">:</p>
-												<p class="col-5 text-xl">
-													<button onclick="double_minus_ng(<?php echo $line['id']; ?>)" style="padding: 0; border: none; background: none;">&lt;&lt;</button>
-													<button onclick="minus_ng(<?php echo $line['id']; ?>)" class="me-2" style="padding: 0; border: none; background: none;"><i class="fas fa-minus"></i></button>
-													<span class="text-dark font-weight-bold" id='NG_<?php echo $line['id']; ?>' style="padding: 0; border: none; background: none;"></span>
-													<button onclick="plus_ng(<?php echo $line['id']; ?>)" class="ms-2" style="padding: 0; border: none; background: none;"><i class="fas fa-plus"></i></button>
-													<button onclick="double_plus_ng(<?php echo $line['id']; ?>)" style="padding: 0; border: none; background: none;">&gt;&gt;</button>
-												</p>
-											</div> -->
-
 										</div>
 										<div class="col-lg-3 mb-3 mt-3">
 											<button type="button" class="btn bg-gradient-success me-1 w-100" data-bs-toggle="modal" data-bs-target="#modal-form-start-<?php echo $line['id']; ?>"><i class="fas fa-play" aria-hidden="true"></i>&nbsp;&nbsp;Start</button>
