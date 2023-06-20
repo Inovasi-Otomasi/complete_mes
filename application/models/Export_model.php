@@ -246,7 +246,7 @@ class Export_model extends CI_Model
 		$sheet->getColumnDimension('U')->setAutoSize(true); // Set width kolom E
 
 		// $writer = new Xlsx($spreadsheet);
-		ob_end_clean();
+		// ob_end_clean();
 		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 		$writer->setIncludeCharts(true);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
