@@ -94,8 +94,8 @@ class Export_model extends CI_Model
 			$this->db->from('log_oee');
 			$query2 = $this->db->get();
 			$row = $query2->row_array();
-			$sheet->setCellValue('N' . $numrow, $data['detail']);
-			$sheet->setCellValue('O' . $numrow, $row['count(*)']);
+			$sheet->setCellValue('J' . $numrow, $data['detail']);
+			$sheet->setCellValue('K' . $numrow, $row['count(*)']);
 			$numrow++;
 		}
 
@@ -124,8 +124,8 @@ class Export_model extends CI_Model
 			$query2 = $this->db->get();
 			$row = $query2->row_array();
 
-			$sheet->setCellValue('J' . $numrow, $data['detail']);
-			$sheet->setCellValue('K' . $numrow, $row['count(*)']);
+			$sheet->setCellValue('L' . $numrow, $data['detail']);
+			$sheet->setCellValue('M' . $numrow, $row['count(*)']);
 			$numrow++;
 		}
 
@@ -151,8 +151,8 @@ class Export_model extends CI_Model
 			$query2 = $this->db->get();
 			$row = $query2->row_array();
 
-			$sheet->setCellValue('L' . $numrow, $data['detail']);
-			$sheet->setCellValue('M' . $numrow, $row['count(*)']);
+			$sheet->setCellValue('N' . $numrow, $data['detail']);
+			$sheet->setCellValue('O' . $numrow, $row['count(*)']);
 
 			$this->db->select('count(*)');
 			$this->db->where('remark_2', $data['detail']);
