@@ -64,7 +64,7 @@
 				<table id="order_list" class="display text-center text-nowrap" style="width:100%">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<!-- <th>ID</th> -->
 							<th>Batch Number</th>
 							<th>Lot Number</th>
 							<th>Line Name</th>
@@ -87,7 +87,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>ID</th>
+							<!-- <th>ID</th> -->
 							<th>Batch Number</th>
 							<th>Lot Number</th>
 							<th>Line Name</th>

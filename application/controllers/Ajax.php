@@ -187,7 +187,7 @@ class Ajax extends CI_Controller
 				$line_names .= '</ul>';
 
 				$row = array();
-				$row[] = $list->id;
+				// $row[] = $list->id;
 				$row[] = $list->sku_code;
 				$row[] =  $line_names;
 				// $row[] = $list->line_name;
@@ -430,7 +430,7 @@ class Ajax extends CI_Controller
 			$data = array();
 			foreach ($lists as $list) {
 				$row = array();
-				$row[] = $list->id;
+				// $row[] = $list->id;
 				$row[] = $list->pic_name;
 				$row[] = $list->employee_id;
 				$row[] = $list->contact;
@@ -532,7 +532,7 @@ class Ajax extends CI_Controller
 			$data = array();
 			foreach ($lists as $list) {
 				$row = array();
-				$row[] = $list->id;
+				// $row[] = $list->id;
 				$row[] = $list->status;
 				$row[] = $list->detail;
 				$row[] = $list->remark_time;

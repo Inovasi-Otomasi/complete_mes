@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Sku_model extends CI_Model
 {
     var $table = 'sku_list';
-    var $column_order = array('id', 'sku_code', 'line_rules', 'material', null, null); //set column field database for datatable orderable
-    var $column_search = array('id', 'sku_code', 'line_rules', 'material'); //set column field database for datatable searchable 
+    var $column_order = array('sku_code', 'line_rules', 'material', null, null); //set column field database for datatable orderable
+    var $column_search = array('sku_code', 'line_rules', 'material'); //set column field database for datatable searchable 
     var $order = array('id' => 'asc'); // default order 
 
     public function __construct()

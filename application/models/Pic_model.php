@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Pic_model extends CI_Model
 {
     var $table = 'pic_list';
-    var $column_order = array('id', 'pic_name', 'employee_id', 'contact', null, null); //set column field database for datatable orderable
-    var $column_search = array('id', 'pic_name', 'employee_id', 'contact'); //set column field database for datatable searchable 
+    var $column_order = array('pic_name', 'employee_id', 'contact', null, null); //set column field database for datatable orderable
+    var $column_search = array('pic_name', 'employee_id', 'contact'); //set column field database for datatable searchable 
     var $order = array('id' => 'asc'); // default order 
 
     public function __construct()

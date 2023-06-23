@@ -92,7 +92,7 @@
 						<table id="sku_list" class="display text-center" style="width:100%">
 							<thead>
 								<tr>
-									<th>ID</th>
+									<!-- <th>ID</th> -->
 									<th>SKU Code</th>
 									<th>Line Name (Cycle Time, Quantity)</th>
 									<!-- <th>Line Name</th> -->
@@ -107,7 +107,7 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>ID</th>
+									<!-- <th>ID</th> -->
 									<th>SKU Code</th>
 									<th>Line Name (Cycle Time, Quantity)</th>
 									<!-- <th>Line Name</th> -->
@@ -165,7 +165,7 @@
 						<table id="pic_list" class="display text-center" style="width:100%">
 							<thead>
 								<tr>
-									<th>ID</th>
+									<!-- <th>ID</th> -->
 									<th>PIC Name</th>
 									<th>Employee ID</th>
 									<th>Contact</th>
@@ -177,7 +177,7 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>ID</th>
+									<!-- <th>ID</th> -->
 									<th>PIC Name</th>
 									<th>Employee ID</th>
 									<th>Contact</th>
@@ -237,7 +237,7 @@
 						<table id="remark_list" class="display text-center" style="width:100%">
 							<thead>
 								<tr>
-									<th>ID</th>
+									<!-- <th>ID</th> -->
 									<th>Status</th>
 									<th>Detail</th>
 									<th>Remark Time (s)</th>
@@ -249,7 +249,7 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>ID</th>
+									<!-- <th>ID</th> -->
 									<th>Status</th>
 									<th>Detail</th>
 									<th>Remark Time (s)</th>

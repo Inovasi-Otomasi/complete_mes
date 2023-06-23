@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Order_model extends CI_Model
 {
 	var $table = 'order_list';
-	var $column_order = array('id', 'batch_id', 'lot_number', 'line_rules', 'sku_code', 'quantity',  'created_at', 'started_at', 'finished_at', 'storage', 'status', 'progress', null); //set column field database for datatable orderable
-	var $column_search = array('id', 'batch_id', 'lot_number', 'line_rules', 'sku_code', 'quantity',  'created_at', 'started_at', 'finished_at', 'storage', 'status', 'progress'); //set column field database for datatable searchable 
+	var $column_order = array('batch_id', 'lot_number', 'line_rules', 'sku_code', 'quantity',  'created_at', 'started_at', 'finished_at', 'storage', 'status', 'progress', null); //set column field database for datatable orderable
+	var $column_search = array('batch_id', 'lot_number', 'line_rules', 'sku_code', 'quantity',  'created_at', 'started_at', 'finished_at', 'storage', 'status', 'progress'); //set column field database for datatable searchable 
 	var $order = array('id' => 'asc'); // default order 
 
 	public function __construct()

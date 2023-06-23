@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Remark_model extends CI_Model
 {
     var $table = 'remark_list';
-    var $column_order = array('id', 'status', 'detail', 'remark_time', null, null); //set column field database for datatable orderable
-    var $column_search = array('id', 'status', 'detail', 'remark_time'); //set column field database for datatable searchable 
+    var $column_order = array('status', 'detail', 'remark_time', null, null); //set column field database for datatable orderable
+    var $column_search = array('status', 'detail', 'remark_time'); //set column field database for datatable searchable 
     var $order = array('id' => 'asc'); // default order 
 
     public function __construct()
