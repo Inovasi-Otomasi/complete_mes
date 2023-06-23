@@ -358,7 +358,7 @@ class Ajax extends CI_Controller
 				$list->pic_list = $this->pic_model->get_pic_info();
 				$list->remark_list = $this->remark_model->get_remark_info();
 				$row = array();
-				$row[] = $list->id;
+				// $row[] = $list->id;
 				$row[] = $list->timestamp;
 				$row[] = $list->batch_id;
 				$row[] = $list->lot_number;

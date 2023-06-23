@@ -10,7 +10,7 @@
 				<table id="log_list" class="display text-center" style="width:100%">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<!-- <th>ID</th> -->
 							<th>Timestamp</th>
 							<th>Batch Number</th>
 							<th>Lot Number</th>
@@ -37,7 +37,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>ID</th>
+							<!-- <th>ID</th> -->
 							<th>Timestamp</th>
 							<th>Batch Number</th>
 							<th>Lot Number</th>
