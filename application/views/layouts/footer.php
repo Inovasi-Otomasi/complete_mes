@@ -452,7 +452,7 @@
 				"type": "POST"
 			},
 			"aaSorting": [
-				[0, "desc"]
+				[5, "desc"]
 			]
 		});
 		$('#inventory_list').DataTable({

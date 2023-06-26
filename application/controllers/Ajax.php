@@ -68,7 +68,7 @@ class Ajax extends CI_Controller
 				}
 				$line_names .= '</ul>';
 				$row = array();
-				$row[] = $list->id;
+				// $row[] = $list->id;
 				$row[] = $list->batch_id;
 				$row[] = $list->lot_number;
 				$row[] = $line_names;
