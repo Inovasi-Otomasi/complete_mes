@@ -5,48 +5,6 @@
 				<h3 class="text-capitalize">Reporting</h3>
 			</div>
 			<div class="card-body m-2 table-responsive">
-				<div class="row mb-5">
-					<div class="row col">
-						<div class="col-12 mb-0">
-							<div class="numbers">
-								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">OEE</p>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)(($summary['avg(performance)'] + $summary['avg(availability)'] + $summary['avg(quality)']) / 3); ?>" data-text="<?php echo round(($summary['avg(performance)'] + $summary['avg(availability)'] + $summary['avg(quality)']) / 3, 1); ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
-						</div>
-					</div>
-					<div class="row col">
-						<div class="col-12 mb-0">
-							<div class="numbers">
-								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Performance</p>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(performance)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(performance)'], 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
-						</div>
-					</div>
-					<div class="row col">
-						<div class="col-12 mb-0">
-							<div class="numbers">
-								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Availability</p>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(availability)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(availability)'], 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
-						</div>
-					</div>
-					<div class="row col">
-						<div class="col-12 mb-0">
-							<div class="numbers">
-								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Quality</p>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(quality)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(quality)'], 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
-						</div>
-					</div>
-				</div>
 				<form role="form">
 					<div class="mb-3 row g-3 align-items-center">
 						<div class="col-sm-12 col-lg-2">
@@ -87,6 +45,56 @@
 					<button type="submit" value="Submit" name="apply" formmethod="post" formaction="<?php echo base_url(); ?>pages/reporting" class="btn btn-primary">Apply</button>
 					<button type="submit" value="Submit" name="export" formmethod="post" formaction="<?php echo base_url(); ?>ajax/export" formtarget="_blank" class="btn btn-success">Export</button>
 				</form>
+				<div class="row my-5">
+					<div class="row col">
+						<div class="col-12 mb-0">
+							<div class="numbers">
+								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">OEE</p>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)(($summary['avg(performance_24h)'] ?: 0 + $summary['avg(availability_24h)'] ?: 0 + $summary['avg(quality_24h)'] ?: 0) / 3); ?>" data-text="<?php echo round(($summary['avg(performance_24h)'] + $summary['avg(availability_24h)'] + $summary['avg(quality_24h)']) / 3, 1); ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+						</div>
+					</div>
+					<div class="row col">
+						<div class="col-12 mb-0">
+							<div class="numbers">
+								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Performance</p>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(performance_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(performance_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+						</div>
+					</div>
+					<div class="row col">
+						<div class="col-12 mb-0">
+							<div class="numbers">
+								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Availability</p>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(availability_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(availability_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+						</div>
+					</div>
+					<div class="row col">
+						<div class="col-12 mb-0">
+							<div class="numbers">
+								<p class="text-sm mb-0 text-uppercase font-weight-bold text-center">Quality</p>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(quality_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(quality_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<?php foreach ($line_list as $line) : ?>
+						<div class="col-lg-6 my-2">
+							<h5><?php echo $line['line_name']; ?></h5>
+							<div id="chart-<?php echo $line['id']; ?>" style="width: 100%; min-height: 300px"></div>
+						</div>
+					<?php endforeach; ?>
+				</div>
 			</div>
 		</div>
 	</div>

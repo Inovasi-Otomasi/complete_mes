@@ -254,17 +254,20 @@ class Pages extends CI_Controller
 				$data['mainpage'] = 'reporting';
 				$data['privileges'] = $this->session->userdata('privileges');
 				$data['summary'] = [
-					'avg(performance)' => 0,
-					'avg(availability)' => 0,
-					'avg(quality)' => 0,
+					'avg(performance_24h)' => 0,
+					'avg(availability_24h)' => 0,
+					'avg(quality_24h)' => 0,
 				];
+				$data['line_list'] = array();
 				$data['request'] = array(
 					"datetimerange" => $this->input->post("datetimerange") ?: NULL,
 					"line_name" => $this->input->post("line") ?: NULL,
 					"sku_code" => $this->input->post("sku") ?: NULL,
 				);
+
 				if ($this->input->post("datetimerange") && $this->input->post("line") && $this->input->post("sku")) {
 					$data['summary'] = $this->log_model->get_summary($data['request']);
+					$data['line_list'] = $this->log_model->get_line_list($data['request']);
 				}
 				// var_dump($data['summary']['avg(performance)']);
 				$this->load->view('layouts/header', $data);

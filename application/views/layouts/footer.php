@@ -28,11 +28,118 @@
 <script src="<?php echo base_url(); ?>assets/js/plugins/chartjs.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/all.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/selectize.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dist/echarts.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/daterangepicker.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/argon-dashboard.min.js?v=2.0.1"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkvuKagRiFJGavzz2vXIhRJ4SWbd-A3-Y&libraries=places"></script>
+<?php if ($mainpage == 'reporting') : ?>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			let getLiveDataOnce = function() {
+				$.ajax({
+					type: 'POST',
+					url: '<?php echo base_url() . '/ajax/get_chart'; ?>',
+					async: true,
+					dataType: 'json',
+					data: {
+						datetimerange: "<?php echo $request['datetimerange']; ?>",
+						line_name: "<?php echo $request['line_name']; ?>",
+						sku_code: "<?php echo $request['sku_code']; ?>",
+						// from: {{ request('from') ?: 'null' }},
+						// to: {{ request('to') ?: 'null' }},
+						// line: {{ request('line') ?: 'null' }},
+						// machine: {{ request('machine') ?: 'null' }},
+						// shift: {{ request('shift') ?: 'null' }},
+						// sku: {{ request('sku') ?: 'null' }}
+					},
+					success: function(data) {
+						// console.log('hehe')
+						let line_name = "";
+						let line_id = 0;
+						<?php foreach ($line_list as $line) : ?>
+							line_name = "<?php echo $line['line_name']; ?>"
+							line_id = "<?php echo $line['id']; ?>"
+							var myChart = echarts.init(document.getElementById('chart-<?php echo $line['id']; ?>'));
+							var option = {
+								tooltip: {
+									trigger: 'axis'
+								},
+								legend: {
+									show: true
+								},
+								grid: {
+									left: '3%',
+									right: '4%',
+									bottom: '3%',
+									containLabel: true
+								},
+								xAxis: {
+									type: 'time',
+									boundaryGap: false,
+								},
+								yAxis: {
+									type: 'value'
+								},
+								series: [{
+										name: 'Availability',
+										type: 'line',
+										data: data[line_id].map(
+											function(row) {
+												if (line_name == row['line_name']) {
+													return [row[
+														'forDate'
+													], row[
+														'availability_24h'
+													]];
+												}
+
+											}
+										)
+									},
+									{
+										name: 'Performance',
+										type: 'line',
+										data: data[line_id].map(
+											function(row) {
+												if (line_name == row['line_name']) {
+													return [row[
+														'forDate'
+													], row[
+														'performance_24h'
+													]];
+												}
+											}
+										)
+									},
+									{
+										name: 'Quality',
+										type: 'line',
+										data: data[line_id].map(
+											function(row) {
+												if (line_name == row['line_name']) {
+													return [row[
+														'forDate'
+													], row[
+														'quality_24h'
+													]];
+												}
+											}
+										)
+									},
+								]
+							};
+							myChart.setOption(option);
+						<?php endforeach; ?>
+					}
+				});
+			}
+			getLiveDataOnce();
+		})
+	</script>
+<?php endif; ?>
+
 <?php if ($mainpage == 'product_cycle_tracking') : ?>
 	<script>
 		function initMap() {

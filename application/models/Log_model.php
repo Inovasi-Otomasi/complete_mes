@@ -161,7 +161,7 @@ class Log_model extends CI_Model
 		// echo $datetimeexplode[0];
 		$datetimestart = $datetimeexplode[0];
 		$datetimeend = $datetimeexplode[1];
-		$this->db->select('avg(performance),avg(availability),avg(quality)');
+		$this->db->select('avg(performance_24h),avg(availability_24h),avg(quality_24h)');
 		if ($data['line_name'] != 'All') {
 			$this->db->where('line_name', $data['line_name']);
 		}
@@ -173,5 +173,52 @@ class Log_model extends CI_Model
 		$this->db->from('log_oee');
 		$query = $this->db->get();
 		return (array)$query->row();
+	}
+	public function get_line_list($json_arr)
+	{
+		$this->db->select('*');
+		if ($json_arr['line_name'] != 'All') {
+			$this->db->where('line_name', $json_arr['line_name']);
+		}
+		$this->db->from('manufacturing_line');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	public function get_chart($json_arr)
+	{
+		$datetimeexplode = explode(' to ', $json_arr['datetimerange']);
+		// echo $datetimeexplode[0];
+		$datetimestart = $datetimeexplode[0];
+		$datetimeend = $datetimeexplode[1];
+		$this->db->select('*');
+		if ($json_arr['line_name'] != 'All') {
+			$this->db->where('line_name', $json_arr['line_name']);
+		}
+		$this->db->from('manufacturing_line');
+		$query = $this->db->get();
+		$return_arr = array();
+		foreach ($query->result_array() as $data) {
+			$this->db->select('max(id)');
+			$this->db->where('line_name', $data['line_name']);
+			if ($json_arr['sku_code'] != 'All') {
+				$this->db->where('sku_code', $json_arr['sku_code']);
+			}
+			$this->db->where('timestamp >=', $datetimestart);
+			$this->db->where('timestamp <=', $datetimeend);
+			$this->db->group_by('date(timestamp),line_name');
+			$this->db->from('log_oee');
+			$subQuery = $this->db->get_compiled_select();
+
+			$this->db->select("*,date(timestamp) as forDate");
+			$this->db->order_by("timestamp", "desc");
+			$this->db->from('log_oee');
+			$this->db->where("`id` IN ($subQuery)", NULL, FALSE);
+			$query2 = $this->db->get();
+			$result2 = $query2->result_array();
+			// foreach ($result2 as $row) {
+			// }
+			$return_arr[$data['id']] = $result2;
+		}
+		return $return_arr;
 	}
 }
