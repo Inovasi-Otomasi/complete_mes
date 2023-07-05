@@ -53,7 +53,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)(($summary['avg(performance_24h)'] ?: 0 + $summary['avg(availability_24h)'] ?: 0 + $summary['avg(quality_24h)'] ?: 0) / 3); ?>" data-text="<?php echo round(($summary['avg(performance_24h)'] + $summary['avg(availability_24h)'] + $summary['avg(quality_24h)']) / 3, 1); ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)(($summary['avg(performance_24h)'] ?: 0 + $summary['avg(availability_24h)'] ?: 0 + $summary['avg(quality_24h)'] ?: 0) / 3); ?>" data-text="<?php echo round(($summary['avg(performance_24h)'] + $summary['avg(availability_24h)'] + $summary['avg(quality_24h)']) / 3, 1); ?>" data-animationstep="0" data-size="100" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 					<div class="row col">
@@ -63,7 +63,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(performance_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(performance_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(performance_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(performance_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="100" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 					<div class="row col">
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(availability_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(availability_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(availability_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(availability_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="100" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 					<div class="row col">
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(quality_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(quality_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)$summary['avg(quality_24h)'] ?: 0; ?>" data-text="<?php echo round($summary['avg(quality_24h)'] ?: 0, 1) ?: 0; ?>" data-animationstep="0" data-size="100" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 				</div>
