@@ -531,7 +531,7 @@
 											</div>
 											<hr class="my-1 py-0">
 											<div class="row">
-												<p class="col-5 text-xl my-0 py-0">Lot Number</p>
+												<p class="col-5 text-xl my-0 py-0">Doc Number</p>
 												<p class="col-2 text-xl my-0 py-0">:</p>
 												<p class="col-5 text-xl my-0 py-0"><span class="text-dark font-weight-bold ms-sm-2" id='lot_number_<?php echo $line['id']; ?>'></span></p>
 											</div>
