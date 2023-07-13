@@ -75,8 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	// 'hostname' => 'localhost',
 	// 'hostname' => 'dbdemo.colinn.id:3307',
+	'hostname' => '172.17.0.1:33069',
 	'username' => 'admin',
 	'password' => 'adminiot',
 	'database' => 'oee4',

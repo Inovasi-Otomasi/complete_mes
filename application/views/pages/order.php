@@ -32,9 +32,9 @@
 												<div class="input-group mb-3">
 													<input class="form-control" type="text" placeholder="Batch Number" name='batch_id' required>
 												</div>
-												<label>Lot Number</label>
+												<label>Doc Number</label>
 												<div class="input-group mb-3">
-													<input class="form-control" type="text" placeholder="Lot Number" name='lot_number' required>
+													<input class="form-control" type="text" placeholder="Doc Number" name='lot_number' required>
 												</div>
 												<label>Quantity</label>
 												<div class="input-group mb-3">
@@ -66,7 +66,7 @@
 						<tr>
 							<!-- <th>ID</th> -->
 							<th>Batch Number</th>
-							<th>Lot Number</th>
+							<th>Doc Number</th>
 							<th>Line Name</th>
 							<th>SKU Name</th>
 							<th>Target Quantity</th>
@@ -89,7 +89,7 @@
 						<tr>
 							<!-- <th>ID</th> -->
 							<th>Batch Number</th>
-							<th>Lot Number</th>
+							<th>Doc Number</th>
 							<th>Line Name</th>
 							<th>SKU Name</th>
 							<th>Target Quantity</th>
