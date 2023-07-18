@@ -53,7 +53,7 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)(($summary['avg(performance_24h)'] + $summary['avg(availability_24h)']  + $summary['avg(quality_24h)']) / 3); ?>" data-text="<?php echo round(($summary['avg(performance_24h)'] + $summary['avg(availability_24h)'] + $summary['avg(quality_24h)']) / 3, 1); ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
+							<div class="GaugeMeter start-50 top-50 translate-middle" data-percent="<?php echo (int)(($summary['avg(performance_24h)'] * $summary['avg(availability_24h)']  * $summary['avg(quality_24h)']) / 10000); ?>" data-text="<?php echo round(($summary['avg(performance_24h)'] * $summary['avg(availability_24h)'] * $summary['avg(quality_24h)']) / 10000, 1); ?>" data-animationstep="0" data-size="150" data-append="%" data-width="15" data-text_size="0.18"></div>
 						</div>
 					</div>
 					<div class="row col">

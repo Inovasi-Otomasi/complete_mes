@@ -267,7 +267,7 @@ class Export_model extends CI_Model
 				$sheet->setCellValue('C' . $numrow2, $row['availability_24h']);
 				$sheet->setCellValue('D' . $numrow2, $row['performance_24h']);
 				$sheet->setCellValue('E' . $numrow2, $row['quality_24h']);
-				$sheet->setCellValue('F' . $numrow2, round(($row['availability_24h'] + $row['performance_24h'] + $row['quality_24h']) / 3, 2));
+				$sheet->setCellValue('F' . $numrow2, round(($row['availability_24h'] * $row['performance_24h'] * $row['quality_24h']) / 10000, 2));
 				$sheet->getStyle('A' . $numrow2)->applyFromArray($style_row);
 				$sheet->getStyle('B' . $numrow2)->applyFromArray($style_row);
 				$sheet->getStyle('C' . $numrow2)->applyFromArray($style_row);

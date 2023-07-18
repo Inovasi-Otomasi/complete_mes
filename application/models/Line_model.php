@@ -226,7 +226,7 @@ class Line_model extends CI_Model
 	}
 	public function get_avg_oee()
 	{
-		$this->db->select('(avg(performance)+avg(availability)+avg(quality))/3 as avg_oee');
+		$this->db->select('(avg(performance)*avg(availability)*avg(quality))/10000 as avg_oee');
 		$this->db->from('manufacturing_line');
 		$avg = $this->db->get()->row()->avg_oee;
 		return round($avg, 2);
