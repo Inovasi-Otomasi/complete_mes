@@ -351,7 +351,7 @@
 								$("#quality_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-gradient-danger").addClass("bg-success");
 							} else if (data[i].quality_24h < 80 && data[i].quality_24h > 50) {
 								$("#quality_24h_bar_" + data[i].id).removeClass("bg-gradient-danger").removeClass("bg-success").addClass("bg-gradient-warning");
-							} else if (data[i].quality <= 50) {
+							} else if (data[i].quality_24h <= 50) {
 								$("#quality_24h_bar_" + data[i].id).removeClass("bg-gradient-warning").removeClass("bg-success").addClass("bg-gradient-danger");
 							}
 							$("#progress_" + data[i].id).html(data[i].progress);
