@@ -234,6 +234,18 @@ class Pages extends CI_Controller
 				$data['remark_list'] = $this->remark_model->get_remark_info();
 				$data['mainpage'] = 'down_time_log';
 				$data['privileges'] = $this->session->userdata('privileges');
+				$data_ajax = $this->session->flashdata('data_ajax');
+				$data['request'] = array(
+					"datetimerange" => $this->input->post("datetimerange") ?: date("Y-m-d") . ' 00:00:00 to ' . date("Y-m-d") . ' 23:59:59',
+					// "line_name" => $this->input->post("line_name") ?: 'all',
+				);
+				if ($data_ajax) {
+					$data['request'] = array(
+						"datetimerange" => $data_ajax['datetimerange'],
+						// "line_name" => $data_ajax['line_name'],
+					);
+				}
+
 				$this->load->view('layouts/header', $data);
 				$this->load->view('pages/breakdown_log', $data);
 				$this->load->view('layouts/footer');

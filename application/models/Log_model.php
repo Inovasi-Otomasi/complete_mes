@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Log_model extends CI_Model
 {
 	var $table = 'log_oee';
-	var $column_order = array('timestamp', 'batch_id', 'lot_number', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'delta_down_time', 'performance', 'availability', 'quality', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location', null, null); //set column field database for datatable orderable
-	var $column_search = array('timestamp', 'batch_id', 'lot_number', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'delta_down_time', 'performance', 'availability', 'quality', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location'); //set column field database for datatable searchable 
+	var $column_order = array('id', 'timestamp', 'batch_id', 'lot_number', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'delta_down_time', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location', null, null); //set column field database for datatable orderable
+	var $column_search = array('id', 'timestamp', 'batch_id', 'lot_number', 'line_name', 'sku_code', 'item_counter', 'NG_count', 'status', 'delta_down_time', 'pic_name', 'remark', 'detail', 'pic_name_2', 'remark_2', 'detail_2', 'location'); //set column field database for datatable searchable 
 	var $order = array('id' => 'asc'); // default order 
 	// var $sql_table = "select * from (SELECT *,(LAG(status, 1) OVER (PARTITION BY line_name ORDER BY timestamp)) as prev_status FROM log_oee) as t where status!=prev_status and status='BREAKDOWN'";
 	public function __construct()
@@ -14,12 +14,17 @@ class Log_model extends CI_Model
 		$this->load->database();
 	}
 
-	private function _get_datatables_query()
+	private function _get_datatables_query($datetimerange)
 	{
 		// $this->db->select('machine_info.*,station_info.name as station_name');
 		$this->db->select('*');
 		$this->db->where('status !=prev_status');
 		$this->db->where('(status = "DOWN TIME" or status = "SMALL STOP" or status = "BREAKDOWN")');
+		$datetimeexplode = explode(' to ', $datetimerange);
+		$datetimestart = $datetimeexplode[0];
+		$datetimeend = $datetimeexplode[1];
+		$this->db->where('timestamp >=', $datetimestart);
+		$this->db->where('timestamp <=', $datetimeend);
 		// $this->db->from('(SELECT *,(LAG(status, 1) OVER (PARTITION BY line_name ORDER BY timestamp)) as prev_status FROM log_oee) as t');
 		$this->db->from($this->table);
 		// select * from (SELECT *,(LAG(status, 1) OVER (
@@ -51,6 +56,11 @@ class Log_model extends CI_Model
 			$i++;
 		}
 
+		//single column search
+		for ($i = 0; $i < sizeof($this->column_search) - 1; $i++) {
+			$this->db->like($this->column_search[$i], $_POST['columns'][$i]['search']['value']);
+		}
+
 		if (isset($_POST['order'])) // here order processing
 		{
 			$this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
@@ -60,9 +70,9 @@ class Log_model extends CI_Model
 		}
 	}
 
-	function get_datatables()
+	function get_datatables($datetimerange)
 	{
-		$this->_get_datatables_query();
+		$this->_get_datatables_query($datetimerange);
 		if ($_POST['length'] != -1)
 			$this->db->limit($_POST['length'], $_POST['start']);
 		$query = $this->db->get();
@@ -70,9 +80,9 @@ class Log_model extends CI_Model
 		return $query->result();
 	}
 
-	function count_filtered()
+	function count_filtered($datetimerange)
 	{
-		$this->_get_datatables_query();
+		$this->_get_datatables_query($datetimerange);
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
@@ -81,7 +91,7 @@ class Log_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->where('status !=prev_status');
-		$this->db->where('(status = "DOWN TIME" or status = "SMALL STOP")');
+		$this->db->where('(status = "DOWN TIME" or status = "SMALL STOP" or status = "BREAKDOWN")');
 		// $this->db->from('(SELECT *,(LAG(status, 1) OVER (PARTITION BY line_name ORDER BY timestamp)) as prev_status FROM log_oee) as t');
 		$this->db->from($this->table);
 		// $this->db->query($this->sql_table);

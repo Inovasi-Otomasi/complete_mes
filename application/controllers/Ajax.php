@@ -350,7 +350,10 @@ class Ajax extends CI_Controller
 	public function log_list()
 	{
 		if ($this->session->userdata('username') != '') {
-			$lists = $this->log_model->get_datatables();
+			$data_ajax = array(
+				"datetimerange" => $this->input->post("datetimerange"),
+			);
+			$lists = $this->log_model->get_datatables($data_ajax["datetimerange"]);
 			// $lists->pic_list = $this->pic_model->get_pic_info();
 			// $lists->remark_list = $this->remark_model->get_remark_info();
 			$data = array();
@@ -358,7 +361,7 @@ class Ajax extends CI_Controller
 				$list->pic_list = $this->pic_model->get_pic_info();
 				$list->remark_list = $this->remark_model->get_remark_info();
 				$row = array();
-				// $row[] = $list->id;
+				$row[] = $list->id;
 				$row[] = $list->timestamp;
 				$row[] = $list->batch_id;
 				$row[] = $list->lot_number;
@@ -378,14 +381,17 @@ class Ajax extends CI_Controller
 				// $row[] = $list->performance;
 				// $row[] = $list->availability;
 				// $row[] = $list->quality;
-				$row[] =  $this->load->view('jquery/modal_log', $list, TRUE);
+				$row[] =  $this->load->view('jquery/modal_log', [
+					"list" => $list,
+					"data_ajax" => $data_ajax
+				], TRUE);
 				// $row[] = '<a class="btn m-0 p-0" style="background-color: transparent;border-color: transparent;box-shadow: none;" href="' . base_url('ajax/delete_sku?id=') . $list->id . '"><i class="fas fa-trash-alt"></i></a>';
 				$data[] = $row;
 			}
 			$output = array(
 				"draw" => $_POST['draw'],
 				"recordsTotal" => $this->log_model->count_all(),
-				"recordsFiltered" => $this->log_model->count_filtered(),
+				"recordsFiltered" => $this->log_model->count_filtered($data_ajax["datetimerange"]),
 				"data" => $data,
 			);
 			echo json_encode($output);
@@ -397,6 +403,9 @@ class Ajax extends CI_Controller
 	{
 		if ($this->session->userdata('username') != '') {
 			if ($this->in_array_any(['admin', 'edit_breakdown_log'], $this->session->userdata('privileges'))) {
+				$data_ajax = [
+					'datetimerange' => $this->input->post("datetimerange")
+				];
 				$data = array(
 					"id" => $this->input->post("id"),
 					"pic_name" => $this->input->post("pic_name"),
@@ -410,9 +419,11 @@ class Ajax extends CI_Controller
 				if ($result > 0) {
 					$this->event_model->add_event(array("event" => "Down Time log ID " . $data['id'] . " has been changed."));
 					$this->session->set_flashdata("success", "Your changes have been saved.");
+					$this->session->set_flashdata('data_ajax', $data_ajax);
 					redirect(base_url() . 'pages/breakdown_log');
 				} else {
 					$this->session->set_flashdata("failed", "Your changes cannot be saved.");
+					$this->session->set_flashdata('data_ajax', $data_ajax);
 					redirect(base_url() . 'pages/breakdown_log');
 				}
 			} else {

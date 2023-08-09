@@ -9,7 +9,7 @@
 			<div class="col-lg-6">
 				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
 					<li class="nav-item">
-						Version : 20230713-GPL
+						Version : 20230809-GPL
 					</li>
 				</ul>
 			</div>
@@ -33,7 +33,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/daterangepicker.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/argon-dashboard.min.js?v=2.0.1"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkvuKagRiFJGavzz2vXIhRJ4SWbd-A3-Y&libraries=places"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkvuKagRiFJGavzz2vXIhRJ4SWbd-A3-Y&libraries=places"></script> -->
 <?php if ($mainpage == 'reporting') : ?>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -224,47 +224,45 @@
 		});
 	});
 </script>
-<?php if ($mainpage == 'reporting') : ?>
-	<script>
-		$(function() {
-			$('input[name="datetimerange"]').daterangepicker({
-				timePicker: true,
-				// startDate: moment().startOf('hour'),
-				// endDate: moment().startOf('hour').add(32, 'hour'),
+<script>
+	$(function() {
+		$('input[name="datetimerange"]').daterangepicker({
+			timePicker: true,
+			// startDate: moment().startOf('hour'),
+			// endDate: moment().startOf('hour').add(32, 'hour'),
 
-				locale: {
-					separator: " to ",
-					format: 'YYYY-MM-DD HH:mm:ss'
-				}
-			});
+			locale: {
+				separator: " to ",
+				format: 'YYYY-MM-DD HH:mm:ss'
+			}
 		});
-		// $(document).ready(function() {
-		// 	$("#export_form").submit(function(e) {
-		// 		e.preventDefault();
-		// 		var datetimerange = $("#datetimerange").val();;
-		// 		var line_name = $("#line_name").val();
-		// 		$.ajax({
-		// 			type: "POST",
-		// 			url: '<?php echo base_url(); ?>/ajax/export',
-		// 			data: JSON.stringify({
-		// 				datetimerange: datetimerange,
-		// 				line_name: line_name
-		// 			}),
-		// 			contentType: "application/json; charset=utf-8",
-		// 			async: true,
-		// 			dataType: 'json',
-		// 		}).done(function(data) {
-		// 			var $a = $("<a>");
-		// 			$a.attr("href", data.file);
-		// 			$("body").append($a);
-		// 			$a.attr("download", data.file_name);
-		// 			$a[0].click();
-		// 			$a.remove();
-		// 		});
-		// 	});
-		// });
-	</script>
-<?php endif; ?>
+	});
+	// $(document).ready(function() {
+	// 	$("#export_form").submit(function(e) {
+	// 		e.preventDefault();
+	// 		var datetimerange = $("#datetimerange").val();;
+	// 		var line_name = $("#line_name").val();
+	// 		$.ajax({
+	// 			type: "POST",
+	// 			url: '<?php echo base_url(); ?>/ajax/export',
+	// 			data: JSON.stringify({
+	// 				datetimerange: datetimerange,
+	// 				line_name: line_name
+	// 			}),
+	// 			contentType: "application/json; charset=utf-8",
+	// 			async: true,
+	// 			dataType: 'json',
+	// 		}).done(function(data) {
+	// 			var $a = $("<a>");
+	// 			$a.attr("href", data.file);
+	// 			$("body").append($a);
+	// 			$a.attr("download", data.file_name);
+	// 			$a[0].click();
+	// 			$a.remove();
+	// 		});
+	// 	});
+	// });
+</script>
 <?php if ($mainpage == 'oee_management') : ?>
 	<script>
 		$(document).ready(function() {
@@ -524,17 +522,95 @@
 				"type": "POST"
 			},
 		});
-		$('#log_list').DataTable({
-			"processing": true, //Feature control the processing indicator.
-			"serverSide": true, //Feature control DataTables' server-side processing mode.
-			"ajax": {
-				"url": "<?php echo base_url('ajax/log_list') ?>",
-				"type": "POST"
-			},
-			"aaSorting": [
-				[0, "desc"]
-			]
-		});
+		<?php if ($mainpage == 'down_time_log') : ?>
+
+			$('#log_list').DataTable({
+				"processing": true, //Feature control the processing indicator.
+				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"ajax": {
+					"url": "<?php echo base_url('ajax/log_list') ?>",
+					"type": "POST",
+					"data": {
+						datetimerange: "<?php echo $request['datetimerange']; ?>"
+					}
+				},
+				"aaSorting": [
+					[0, "desc"]
+				],
+				"initComplete": function() {
+					this.api().columns([2]).every(function() {
+						var column = this;
+						var select = $('<input>')
+							.appendTo($(column.footer()).empty())
+							.on('change', function() {
+								var val = $.fn.dataTable.util.escapeRegex(
+									$(this).val()
+								);
+
+								column
+									.search(val ? val : '', true, false)
+									.draw();
+							});
+
+						column.data().unique().sort().each(function(d, j) {
+							select.append('<option value="' + d + '">' + d + '</option>')
+						});
+					});
+					this.api().columns([3]).every(function() {
+						var column = this;
+						var select = $('<input>')
+							.appendTo($(column.footer()).empty())
+							.on('change', function() {
+								var val = $.fn.dataTable.util.escapeRegex(
+									$(this).val()
+								);
+
+								column
+									.search(val ? val : '', true, false)
+									.draw();
+							});
+
+						column.data().unique().sort().each(function(d, j) {
+							select.append('<option value="' + d + '">' + d + '</option>')
+						});
+					});
+					this.api().columns([4]).every(function() {
+						var column = this;
+						var select = $('<input>')
+							.appendTo($(column.footer()).empty())
+							.on('change', function() {
+								var val = $.fn.dataTable.util.escapeRegex(
+									$(this).val()
+								);
+
+								column
+									.search(val ? val : '', true, false)
+									.draw();
+							});
+						column.data().unique().sort().each(function(d, j) {
+							select.append('<option value="' + d + '">' + d + '</option>')
+						});
+					});
+					this.api().columns([5]).every(function() {
+						var column = this;
+						var select = $('<input>')
+							.appendTo($(column.footer()).empty())
+							.on('change', function() {
+								var val = $.fn.dataTable.util.escapeRegex(
+									$(this).val()
+								);
+
+								column
+									.search(val ? val : '', true, false)
+									.draw();
+							});
+						column.data().unique().sort().each(function(d, j) {
+							select.append('<option value="' + d + '">' + d + '</option>')
+						});
+					});
+				}
+			});
+		<?php endif; ?>
 		$('#pic_list').DataTable({
 			"processing": true, //Feature control the processing indicator.
 			"serverSide": true, //Feature control DataTables' server-side processing mode.
