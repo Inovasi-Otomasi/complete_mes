@@ -390,7 +390,7 @@ class Ajax extends CI_Controller
 			}
 			$output = array(
 				"draw" => $_POST['draw'],
-				"recordsTotal" => $this->log_model->count_all(),
+				// "recordsTotal" => $this->log_model->count_all(),
 				"recordsFiltered" => $this->log_model->count_filtered($data_ajax["datetimerange"]),
 				"data" => $data,
 			);

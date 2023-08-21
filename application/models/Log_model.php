@@ -58,7 +58,67 @@ class Log_model extends CI_Model
 
 		//single column search
 		for ($i = 0; $i < sizeof($this->column_search) - 1; $i++) {
-			$this->db->like($this->column_search[$i], $_POST['columns'][$i]['search']['value']);
+			if ($_POST['columns'][$i]['search']['value']) {
+				$this->db->like($this->column_search[$i], $_POST['columns'][$i]['search']['value']);
+			}
+		}
+
+		if (isset($_POST['order'])) // here order processing
+		{
+			$this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+		} else if (isset($this->order)) {
+			$order = $this->order;
+			$this->db->order_by(key($order), $order[key($order)]);
+		}
+	}
+
+	private function _get_datatables_query_count($datetimerange)
+	{
+		// $this->db->select('machine_info.*,station_info.name as station_name');
+		$this->db->select('count(id) as counted');
+		$this->db->where('status !=prev_status');
+		$this->db->where('(status = "DOWN TIME" or status = "SMALL STOP" or status = "BREAKDOWN")');
+		$datetimeexplode = explode(' to ', $datetimerange);
+		$datetimestart = $datetimeexplode[0];
+		$datetimeend = $datetimeexplode[1];
+		$this->db->where('timestamp >=', $datetimestart);
+		$this->db->where('timestamp <=', $datetimeend);
+		// $this->db->from('(SELECT *,(LAG(status, 1) OVER (PARTITION BY line_name ORDER BY timestamp)) as prev_status FROM log_oee) as t');
+		$this->db->from($this->table);
+		// select * from (SELECT *,(LAG(status, 1) OVER (
+		// PARTITION BY line_name
+		// ORDER BY timestamp)) as prev_status FROM log_oee) as t where status!=prev_status and status='BREAKDOWN';
+		// $sql = 
+		// $this->db->query($this->sql_table);
+		// $this->db->from($this->table);
+		// $this->get_breakdown_log();
+
+		$i = 0;
+
+		foreach ($this->column_search as $item) // loop column 
+		{
+			if ($_POST['search']['value']) // if datatable send POST for search
+			{
+
+				if ($i === 0) // first loop
+				{
+					$this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+					$this->db->like($item, $_POST['search']['value']);
+				} else {
+					$this->db->or_like($item, $_POST['search']['value']);
+				}
+
+				if (count($this->column_search) - 1 == $i) //last loop
+					$this->db->group_end(); //close bracket
+			}
+			$i++;
+		}
+
+		//single column search
+		for ($i = 0; $i < sizeof($this->column_search) - 1; $i++) {
+			if ($_POST['columns'][$i]['search']['value']) {
+				$this->db->like($this->column_search[$i], $_POST['columns'][$i]['search']['value']);
+			}
 		}
 
 		if (isset($_POST['order'])) // here order processing
@@ -82,9 +142,9 @@ class Log_model extends CI_Model
 
 	function count_filtered($datetimerange)
 	{
-		$this->_get_datatables_query($datetimerange);
+		$this->_get_datatables_query_count($datetimerange);
 		$query = $this->db->get();
-		return $query->num_rows();
+		return $query->row()->counted;
 	}
 
 	public function count_all()

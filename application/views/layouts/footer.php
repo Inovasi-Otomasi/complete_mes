@@ -528,6 +528,9 @@
 			$('#log_list').DataTable({
 				"processing": true, //Feature control the processing indicator.
 				"serverSide": true, //Feature control DataTables' server-side processing mode.
+				"language": {
+					"infoFiltered": ""
+				},
 				"ajax": {
 					"url": "<?php echo base_url('ajax/log_list') ?>",
 					"type": "POST",

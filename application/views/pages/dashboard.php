@@ -269,8 +269,8 @@
 																		<label>Setup Time</label>
 																		<div class="input-group mb-3 row">
 																			<div class="col">
-																				<select class="selectize" id="setup_detail" name="setup_detail">
-																					<option value="0" <?php if ($line['remark'] == '') echo "selected"; ?>>None (0 Detik)</option>
+																				<select class="selectize" id="setup_detail" name="setup_detail" required>
+																					<!-- <option value="0" <?php if ($line['remark'] == '') echo "selected"; ?>>None (0 Detik)</option> -->
 																					<?php foreach ($remark_list as $remark) : ?>
 																						<?php if ($remark['status'] == 'SETUP') : ?>
 																							<option value="<?php echo $remark['detail']; ?>" <?php if ($line['remark'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Detik)'; ?></option>
@@ -282,8 +282,8 @@
 																		<label>Small Stop Time</label>
 																		<div class="input-group mb-3 row">
 																			<div class="col">
-																				<select class="selectize" id="small_stop_detail" name="small_stop_detail">
-																					<option value="0" <?php if ($line['small_stop_detail'] == '') echo "selected"; ?>>None (0 Detik)</option>
+																				<select class="selectize" id="small_stop_detail" name="small_stop_detail" required>
+																					<!-- <option value="0" <?php if ($line['small_stop_detail'] == '') echo "selected"; ?>>None (0 Detik)</option> -->
 																					<?php foreach ($remark_list as $remark) : ?>
 																						<?php if ($remark['status'] == 'SMALL STOP') : ?>
 																							<option value="<?php echo $remark['detail']; ?>" <?php if ($line['small_stop_detail'] == $remark['detail']) echo "selected"; ?>><?php echo $remark['detail'] . ' (' . $remark['remark_time'] . ' Detik)'; ?></option>
