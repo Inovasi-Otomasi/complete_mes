@@ -303,9 +303,24 @@ class Export_model extends CI_Model
 		$writer->setIncludeCharts(true);
 		$filename = $json_arr['line_name'] . ' ' . $json_arr['datetimerange'];
 
-		header('Content-Type: application/vnd.ms-excel');
+		//added
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header("Content-Type: application/force-download");
+		header("Content-Type: application/octet-stream");
+		header("Content-Type: application/download");;
+		header("Content-Disposition: attachment;filename=EXAMPLE.xlsx");
+		header("Content-Transfer-Encoding: binary ");
+		//until this line
+
+		// header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
 		header('Cache-Control: max-age=0');
+		//added
+		ob_end_clean();
+		ob_start();
+		//until this line
 		$writer->save('php://output'); // download file
 		exit;
 	}
