@@ -9,7 +9,7 @@
 			<div class="col-lg-6">
 				<ul class="nav nav-footer justify-content-center justify-content-lg-end">
 					<li class="nav-item">
-						Version : 20230809-GPL
+						Version : 20231128-GPL
 					</li>
 				</ul>
 			</div>
@@ -404,6 +404,7 @@
 							$("#cycle_time_" + data[i].id).html(data[i].cycle_time);
 							$("#run_time_" + data[i].id).html(data[i].run_time);
 							$("#down_time_" + data[i].id).html(data[i].down_time);
+							$("#small_stop_sum_" + data[i].id).html(data[i].small_stop_sum);
 							$("#item_counter_" + data[i].id).html(data[i].item_counter);
 							$("#NG_" + data[i].id).html(data[i].NG_count);
 							$("#additional_" + data[i].id).html(data[i].additional);
