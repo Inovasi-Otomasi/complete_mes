@@ -405,6 +405,7 @@
 							$("#run_time_" + data[i].id).html(data[i].run_time);
 							$("#down_time_" + data[i].id).html(data[i].down_time);
 							$("#small_stop_sum_" + data[i].id).html(data[i].small_stop_sum);
+							$("#small_stop_temp_" + data[i].id).html(data[i].small_stop_temp);
 							$("#item_counter_" + data[i].id).html(data[i].item_counter);
 							$("#NG_" + data[i].id).html(data[i].NG_count);
 							$("#additional_" + data[i].id).html(data[i].additional);
