@@ -44,6 +44,7 @@ class Line_model extends CI_Model
 			$this->db->set('small_stop_detail', '');
 			$this->db->set('small_stop_time', 0);
 			$this->db->set('small_stop_sum', 0);
+			$this->db->set('small_stop_temp', 0);
 			$this->db->set('setup_time_sum', 0);
 			$this->db->set('order_id', 0);
 			$this->db->set('batch_id', 0);
@@ -89,6 +90,9 @@ class Line_model extends CI_Model
 			$this->db->set('order_id', 0);
 			$this->db->set('small_stop_detail', '');
 			$this->db->set('small_stop_time', 0);
+			$this->db->set('small_stop_sum', 0);
+			$this->db->set('small_stop_temp', 0);
+			$this->db->set('setup_time_sum', 0);
 			$this->db->set('order_id', 0);
 			$this->db->set('batch_id', 0);
 			$this->db->set('lot_number', 0);
